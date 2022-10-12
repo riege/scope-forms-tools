@@ -1,0 +1,11 @@
+com.github.pathikrit:better-files
+com.riege:rsi-akka-json
+com.riege:rsi-akka-utils
+com.typesafe.akka:akka-actor
+com.typesafe.akka:akka-slf4j
+net.sf.jasperreports:jasperreports
+net.sourceforge.barbecue:barbecue
+org.apache.xmlgraphics:batik
+org.scala-lang:scala-library
+net.sf.barcode4j:barcode4j
+com.google.zxing:core

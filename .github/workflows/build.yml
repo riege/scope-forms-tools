@@ -1,0 +1,35 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: 8
+          cache: 'gradle'
+
+      - name: Run Checks
+        run: ./gradlew check
+
+      - name: Publish JUnit Report
+        uses: mikepenz/action-junit-report@v3.5.1
+        if: always()
+        with:
+          report_paths: '**/build/test-results/test/TEST-*.xml'

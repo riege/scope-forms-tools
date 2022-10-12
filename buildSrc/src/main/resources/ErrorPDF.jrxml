@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-08-29T17:00:52 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ErrorPDF" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2bd34ae2-5eff-41bb-9121-a9c528e7954d">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="data.file" class="java.io.File">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["/home/user/scope_forms/formData/myParameters.html"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="exception" class="java.lang.Exception">
+		<defaultValueExpression><![CDATA[new NullPointerException("this is a test exception")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="exception.stacktrace" class="java.lang.String">
+		<defaultValueExpression><![CDATA["DEFAULT TEST STACK TRACE\n" +
+"java.lang.NullPointerException: Cannot invoke method getLanguage() on null object\n" +
+"	at org.codehaus.groovy.runtime.NullObject.invokeMethod(NullObject.java:91)\n" +
+"	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:48)\n" +
+"	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)\n" +
+"	at org.codehaus.groovy.runtime.callsite.NullCallSite.call(NullCallSite.java:35)\n" +
+"	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)\n" +
+"	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:57)\n" +
+"	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:117)\n" +
+"	at PdfCreator.createPDF(PdfCreator.groovy:58)\n" +
+"	at PdfCreator$createPDF$0.callStatic(Unknown Source)\n" +
+"	at PdfCreator.createErrorPDF(PdfCreator.groovy:77)\n" +
+"	at PdfCreator$createErrorPDF.call(Unknown Source)\n" +
+"	at RenderFormsTask.handleRendererException(RenderFormsTask.groovy:115)\n" +
+"	at RenderFormsTask$handleRendererException$7.callCurrent(Unknown Source)\n" +
+"	at RenderFormsTask.handleRendererException(RenderFormsTask.groovy:104)\n" +
+"	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n" +
+"	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n" +
+"	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n" +
+"	at java.lang.reflect.Method.invoke(Method.java:498)\n" +
+"	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)\n" +
+"	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)\n" +
+"	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:384)\n" +
+"	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1019)\n" +
+"	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.callCurrent(PogoMetaClassSite.java:69)\n" +
+"	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callCurrent(AbstractCallSite.java:182)\n" +
+"	at RenderFormsTask$_readRenderData_closure3.doCall(RenderFormsTask.groovy:54)\n" +
+"	at sun.reflect.GeneratedMethodAccessor542.invoke(Unknown Source)\n" +
+"	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n" +
+"	at java.lang.reflect.Method.invoke(Method.java:498)\n" +
+"	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:93)\n" +
+"	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)\n" +
+"	at org.codehaus.groovy.runtime.metaclass.ClosureMetaClass.invokeMethod(ClosureMetaClass.java:294)\n" +
+"	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1019)\n" +
+"	at groovy.lang.Closure.call(Closure.java:426)\n" +
+"	at groovy.lang.Closure.call(Closure.java:442)\n" +
+"	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileRecurse(ResourceGroovyMethods.java:1131)\n" +
+"	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileRecurse(ResourceGroovyMethods.java:1129)\n" +
+"	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileRecurse(ResourceGroovyMethods.java:1129)\n" +
+"	at org.codehaus.groovy.runtime.ResourceGroovyMethods.eachFileRecurse(ResourceGroovyMethods.java:1363)\n" +
+"	at org.codehaus.groovy.runtime.dgm$940.invoke(Unknown Source)\n" +
+"	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite$PojoMetaMethodSiteNoUnwrapNoCoerce.invoke(PojoMetaMethodSite.java:274)\n" +
+"	at org.codehaus.groovy.runtime.callsite.PojoMetaMethodSite.call(PojoMetaMethodSite.java:56)\n" +
+"	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:48)\n" +
+"	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:113)\n" +
+"	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)\n" +
+"	at RenderFormsTask.readRenderData(RenderFormsTask.groovy:49)\n" +
+"	at RenderFormsTask.render(RenderFormsTask.groovy:40)\n" +
+"	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n" +
+"	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n" +
+"	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n" +
+"	at java.lang.reflect.Method.invoke(Method.java:498)\n" +
+"	at org.gradle.internal.reflect.JavaMethod.invoke(JavaMethod.java:75)\n" +
+"	at org.gradle.api.internal.project.taskfactory.AnnotationProcessingTaskFactory$IncrementalTaskAction.doExecute(AnnotationProcessingTaskFactory.java:244)\n" +
+"	at org.gradle.api.internal.project.taskfactory.AnnotationProcessingTaskFactory$StandardTaskAction.execute(AnnotationProcessingTaskFactory.java:220)\n" +
+"	at org.gradle.api.internal.project.taskfactory.AnnotationProcessingTaskFactory$IncrementalTaskAction.execute(AnnotationProcessingTaskFactory.java:231)\n" +
+"	at org.gradle.api.internal.project.taskfactory.AnnotationProcessingTaskFactory$StandardTaskAction.execute(AnnotationProcessingTaskFactory.java:209)\n" +
+"	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeAction(ExecuteActionsTaskExecuter.java:80)\n" +
+"	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.executeActions(ExecuteActionsTaskExecuter.java:61)\n" +
+"	at org.gradle.api.internal.tasks.execution.ExecuteActionsTaskExecuter.execute(ExecuteActionsTaskExecuter.java:46)\n" +
+"	at org.gradle.api.internal.tasks.execution.PostExecutionAnalysisTaskExecuter.execute(PostExecutionAnalysisTaskExecuter.java:35)\n" +
+"	at org.gradle.api.internal.tasks.execution.SkipUpToDateTaskExecuter.execute(SkipUpToDateTaskExecuter.java:64)\n" +
+"	at org.gradle.api.internal.tasks.execution.ValidatingTaskExecuter.execute(ValidatingTaskExecuter.java:58)\n" +
+"	at org.gradle.api.internal.tasks.execution.SkipEmptySourceFilesTaskExecuter.execute(SkipEmptySourceFilesTaskExecuter.java:52)\n" +
+"	at org.gradle.api.internal.tasks.execution.SkipTaskWithNoActionsExecuter.execute(SkipTaskWithNoActionsExecuter.java:52)\n" +
+"	at org.gradle.api.internal.tasks.execution.SkipOnlyIfTaskExecuter.execute(SkipOnlyIfTaskExecuter.java:53)\n" +
+"	at org.gradle.api.internal.tasks.execution.ExecuteAtMostOnceTaskExecuter.execute(ExecuteAtMostOnceTaskExecuter.java:43)\n" +
+"	at org.gradle.execution.taskgraph.DefaultTaskGraphExecuter$EventFiringTaskWorker.execute(DefaultTaskGraphExecuter.java:203)\n" +
+"	at org.gradle.execution.taskgraph.DefaultTaskGraphExecuter$EventFiringTaskWorker.execute(DefaultTaskGraphExecuter.java:185)\n" +
+"	at org.gradle.execution.taskgraph.AbstractTaskPlanExecutor$TaskExecutorWorker.processTask(AbstractTaskPlanExecutor.java:66)\n" +
+"	at org.gradle.execution.taskgraph.AbstractTaskPlanExecutor$TaskExecutorWorker.run(AbstractTaskPlanExecutor.java:50)\n" +
+"	at org.gradle.execution.taskgraph.DefaultTaskPlanExecutor.process(DefaultTaskPlanExecutor.java:25)\n" +
+"	at org.gradle.execution.taskgraph.DefaultTaskGraphExecuter.execute(DefaultTaskGraphExecuter.java:110)\n" +
+"	at org.gradle.execution.SelectedTaskExecutionAction.execute(SelectedTaskExecutionAction.java:37)\n" +
+"	at org.gradle.execution.DefaultBuildExecuter.execute(DefaultBuildExecuter.java:37)\n" +
+"	at org.gradle.execution.DefaultBuildExecuter.access$000(DefaultBuildExecuter.java:23)\n" +
+"	at org.gradle.execution.DefaultBuildExecuter$1.proceed(DefaultBuildExecuter.java:43)\n" +
+"	at org.gradle.execution.DryRunBuildExecutionAction.execute(DryRunBuildExecutionAction.java:32)\n" +
+"	at org.gradle.execution.DefaultBuildExecuter.execute(DefaultBuildExecuter.java:37)\n" +
+"	at org.gradle.execution.DefaultBuildExecuter.execute(DefaultBuildExecuter.java:30)\n" +
+"	at org.gradle.initialization.DefaultGradleLauncher$4.run(DefaultGradleLauncher.java:154)\n" +
+"	at org.gradle.internal.Factories$1.create(Factories.java:22)\n" +
+"	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:90)\n" +
+"	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:52)\n" +
+"	at org.gradle.initialization.DefaultGradleLauncher.doBuildStages(DefaultGradleLauncher.java:151)\n" +
+"	at org.gradle.initialization.DefaultGradleLauncher.access$200(DefaultGradleLauncher.java:32)\n" +
+"	at org.gradle.initialization.DefaultGradleLauncher$1.create(DefaultGradleLauncher.java:99)\n" +
+"	at org.gradle.initialization.DefaultGradleLauncher$1.create(DefaultGradleLauncher.java:93)\n" +
+"	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:90)\n" +
+"	at org.gradle.internal.progress.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:62)\n" +
+"	at org.gradle.initialization.DefaultGradleLauncher.doBuild(DefaultGradleLauncher.java:93)\n" +
+"	at org.gradle.initialization.DefaultGradleLauncher.run(DefaultGradleLauncher.java:82)\n" +
+"	at org.gradle.launcher.exec.InProcessBuildActionExecuter$DefaultBuildController.run(InProcessBuildActionExecuter.java:94)\n" +
+"	at org.gradle.tooling.internal.provider.ExecuteBuildActionRunner.run(ExecuteBuildActionRunner.java:28)\n" +
+"	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)\n" +
+"	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:43)\n" +
+"	at org.gradle.launcher.exec.InProcessBuildActionExecuter.execute(InProcessBuildActionExecuter.java:28)\n" +
+"	at org.gradle.launcher.exec.ContinuousBuildActionExecuter.executeBuildAndAccumulateInputs(ContinuousBuildActionExecuter.java:169)\n" +
+"	at org.gradle.launcher.exec.ContinuousBuildActionExecuter.executeMultipleBuilds(ContinuousBuildActionExecuter.java:114)\n" +
+"	at org.gradle.launcher.exec.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:75)\n" +
+"	at org.gradle.launcher.exec.ContinuousBuildActionExecuter.execute(ContinuousBuildActionExecuter.java:47)\n" +
+"	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:52)\n" +
+"	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:36)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:37)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:26)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:34)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.call(ForwardClientInput.java:74)\n" +
+"	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.call(ForwardClientInput.java:72)\n" +
+"	at org.gradle.util.Swapper.swap(Swapper.java:38)\n" +
+"	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:72)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.health.DaemonHealthTracker.execute(DaemonHealthTracker.java:47)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:66)\n" +
+"	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:36)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:72)\n" +
+"	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:36)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.health.HintGCAfterBuild.execute(HintGCAfterBuild.java:41)\n" +
+"	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:120)\n" +
+"	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:50)\n" +
+"	at org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run(DaemonStateCoordinator.java:246)\n" +
+"	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:54)\n" +
+"	at org.gradle.internal.concurrent.StoppableExecutorImpl$1.run(StoppableExecutorImpl.java:40)\n" +
+"	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)\n" +
+"	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)\n" +
+"	at java.lang.Thread.run(Thread.java:745)\n"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<group name="ErrorGruppe">
+		<groupHeader>
+			<band height="220">
+				<textField isStretchWithOverflow="true">
+					<reportElement key="" positionType="Float" x="0" y="130" width="555" height="10" uuid="0cb49c69-9c36-483b-bd52-b271e5ac6704"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{exception.stacktrace}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" x="0" y="89" width="555" height="14" uuid="649bd6d8-2cf0-467c-b14b-a53a8b197d42"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{exception}.getClass().getCanonicalName() + ": " + $P{exception}.getMessage()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="0" y="68" width="555" height="19" uuid="3b940298-e0af-4fe4-b20b-e02f94380bcd"/>
+					<textElement textAlignment="Left">
+						<font size="15"/>
+					</textElement>
+					<text><![CDATA[Exception Message]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="Float" x="0" y="109" width="555" height="19" uuid="18ec5e6d-3552-4a34-925e-9a2197a466df">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left">
+						<font size="15"/>
+					</textElement>
+					<text><![CDATA[Exception Stacktrace]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="555" height="20" uuid="8f10dd89-8cce-4a84-a82b-d341e91de512"/>
+					<textElement textAlignment="Left">
+						<font size="15"/>
+					</textElement>
+					<text><![CDATA[Parameter File]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" hyperlinkType="Reference">
+					<reportElement positionType="Float" x="0" y="40" width="555" height="14" forecolor="#4A99ED" uuid="9eb3ebc6-bf20-440a-a1b7-34ffedc75e4a"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{data.file}.getCanonicalPath()]]></textFieldExpression>
+					<hyperlinkReferenceExpression><![CDATA["file://" + $P{data.file}.getCanonicalPath()]]></hyperlinkReferenceExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="74" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="14" width="555" height="30" uuid="6ca20263-246b-4127-965c-9c80d07f3da9"/>
+				<textElement textAlignment="Center">
+					<font size="23"/>
+				</textElement>
+				<text><![CDATA[Error Report]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="44" width="555" height="22" uuid="8adacc6c-2181-48e3-ac7e-b7949dfc493a"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{data.file}.getName()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

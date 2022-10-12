@@ -1,0 +1,29 @@
+{
+  "context": {
+    "version": "10.0",
+    "domain": "HEAD_QA",
+    "systemID": "my-local-scope",
+    "production": true,
+    "userID": "the_user",
+    "organizationOID": "7380d3fe-f3dd-11de-a969-00163e787d4d",
+    "organizationCode": "ORG",
+    "legalEntityOID": "acf716dd-969d-4b2f-b286-23268808373c",
+    "legalEntityCode": "ORG-DE",
+    "branchOID": "099053d2-0121-4d71-a5d0-aa126bd92f55",
+    "branchCode": "ORGBRA",
+    "countryOID": "ed577621-bf03-43dc-8a47-5b014fd1b1b9",
+    "countryCode": "DE",
+    "locale": "de",
+    "entityOID": "2d7e6337-6dd8-4bcc-a387-9a0158a70be0",
+    "mimeType": "x-scope/air-export-file-cover",
+    "mimeTypeDescription": "Luftfracht Export Aktendeckel"
+  },
+  "encryptPDF": false,
+  "pdfa": false,
+  "formName": "testQRCode",
+  "dataSourceParameterName": "mainreport.dataSource",
+  "data": {
+    "mainData": "mainData",
+    "mainreport.dataSource":[{"someData" : "data"}]
+  }
+}

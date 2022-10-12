@@ -1,0 +1,19 @@
+###
+### Insert manual dependencies here
+###
+### Syntax is FileA -> FileB, meaning that FileA depends on FileB,
+### so changes to FileB also change the results of using FileA
+###
+### Dependencies are resolved transitively, e.g.
+### if A depends on B, and we manually insert B -> C,
+### then changes to C will cause A to be rebuild as well.
+###
+### Paths are relative to src/forms.
+### Use '/' as path separator
+### Lines starting with # are ignored.
+### Empty lines are ignored
+### Preceeding and trailing whitespace is ignored.
+###
+
+sab/rateSheetDocumentChapter_de.jrxml -> sab/rateSheetDocumentItem.jrxml
+sab/rateSheetDocumentChapter_de.jrxml -> sab/rateSheetDocumentItem_de.jrxml

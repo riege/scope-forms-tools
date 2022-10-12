@@ -1,0 +1,49 @@
+import com.riege.scope.gradle.tasks.*
+
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven{url "https://jaspersoft.jfrog.io/artifactory/third-party-ce-artifacts/"}
+}
+
+def formsSourceDir = file(formsSourceDir)
+def formsOutputDir = file(formsOutputDir)
+def formsPDFDir    = file(formsPDFDir)
+def formsParamDir  = file(formsParamDir)
+def errorFormFile  = file(errorFormFile)
+
+task (compileErrorForm, type: JasperReportsCompile) {
+    srcDir file('buildSrc/src/main/resources')
+    outDir errorFormFile.parentFile
+}
+
+task (compileForms, type: JasperReportsCompile) {
+    srcDir formsSourceDir
+    outDir formsOutputDir
+}
+
+task (copyResources, type: Sync) {
+    from(formsSourceDir) {
+        exclude '**/*.jrxml'
+        exclude '**/*.jasper'
+    }
+    into formsOutputDir
+    preserve {
+        include '**/*.jasper'
+    }
+}
+
+task (cleanPDF, type: Delete) {
+    delete formsPDFDir
+}
+
+task (renderForms, type: RenderFormsTask, dependsOn: [compileForms, copyResources, compileErrorForm]) {
+    dataDir      = formsParamDir
+    formSrcDir   = formsSourceDir
+    localFormDir = formsOutputDir
+    outputDir    = formsPDFDir
+    errorForm    = errorFormFile
+}
+

@@ -1,0 +1,17 @@
+* -text
+*.bat text
+*.css text
+*.html text
+*.java text
+*.jnlp text
+*.jrxml text
+*.js text
+*.jsp text
+*.properties text
+*.sh text
+*.sql text
+*.txt text
+*.xml text
+*.xsl text
+
+gradlew.bat text eol=crlf

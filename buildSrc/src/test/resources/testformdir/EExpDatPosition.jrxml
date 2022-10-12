@@ -1,0 +1,2380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EExpDatPosition" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<field name="eexpdat.pos.vordruck.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.vordruck.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.vers.ausf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.empf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.befmittel.abgang.kennz" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.verfahren" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.bezugsnummer" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.warenbezeichnung" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.anzahl.art.zeichen.nummern.packstuecke" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.vorgel.unterl.beschein" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.summ.anmeldung.vorpapier.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.summ.anmeldung.vorpapier.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.summ.anmeldung.vorpapier.drei" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.containernr" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.nummer.zollverschluss" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.warennr.kn8" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.befkosten.zahlungsweise" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.urspr.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.vers.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.best.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.rohmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.eigenmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.stat.wert" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.anmeldung" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.bes.masseeinheit" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.bes.vermerke" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.undg" class="java.lang.String"/>
+	<field name="eexpdat.pos.1.posnr" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.vers.ausf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.empf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.befmittel.abgang.kennz" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.verfahren" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.bezugsnummer" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.warenbezeichnung" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.anzahl.art.zeichen.nummern.packstuecke" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.vorgel.unterl.beschein" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.summ.anmeldung.vorpapier.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.summ.anmeldung.vorpapier.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.summ.anmeldung.vorpapier.drei" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.containernr" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.nummer.zollverschluss" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.warennr.kn8" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.befkosten.zahlungsweise" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.urspr.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.vers.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.best.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.rohmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.eigenmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.stat.wert" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.anmeldung" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.bes.masseeinheit" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.bes.vermerke" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.undg" class="java.lang.String"/>
+	<field name="eexpdat.pos.2.posnr" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.vers.ausf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.empf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.befmittel.abgang.kennz" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.verfahren" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.bezugsnummer" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.warenbezeichnung" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.anzahl.art.zeichen.nummern.packstuecke" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.vorgel.unterl.beschein" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.summ.anmeldung.vorpapier.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.summ.anmeldung.vorpapier.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.summ.anmeldung.vorpapier.drei" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.containernr" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.nummer.zollverschluss" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.warennr.kn8" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.befkosten.zahlungsweise" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.urspr.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.vers.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.best.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.rohmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.eigenmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.stat.wert" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.anmeldung" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.bes.masseeinheit" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.bes.vermerke" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.undg" class="java.lang.String"/>
+	<field name="eexpdat.pos.3.posnr" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.vers.ausf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.empf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.befmittel.abgang.kennz" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.verfahren" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.bezugsnummer" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.warenbezeichnung" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.anzahl.art.zeichen.nummern.packstuecke" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.vorgel.unterl.beschein" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.summ.anmeldung.vorpapier.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.summ.anmeldung.vorpapier.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.summ.anmeldung.vorpapier.drei" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.containernr" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.nummer.zollverschluss" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.warennr.kn8" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.befkosten.zahlungsweise" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.urspr.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.vers.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.best.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.rohmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.eigenmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.stat.wert" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.anmeldung" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.bes.masseeinheit" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.bes.vermerke" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.undg" class="java.lang.String"/>
+	<field name="eexpdat.pos.4.posnr" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.vers.ausf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.empf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.befmittel.abgang.kennz" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.verfahren" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.bezugsnummer" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.warenbezeichnung" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.anzahl.art.zeichen.nummern.packstuecke" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.vorgel.unterl.beschein" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.summ.anmeldung.vorpapier.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.summ.anmeldung.vorpapier.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.summ.anmeldung.vorpapier.drei" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.containernr" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.nummer.zollverschluss" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.warennr.kn8" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.befkosten.zahlungsweise" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.urspr.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.vers.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.best.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.rohmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.eigenmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.stat.wert" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.anmeldung" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.bes.masseeinheit" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.bes.vermerke" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.undg" class="java.lang.String"/>
+	<field name="eexpdat.pos.5.posnr" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.vers.ausf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.empf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.befmittel.abgang.kennz" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.verfahren" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.bezugsnummer" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.warenbezeichnung" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.anzahl.art.zeichen.nummern.packstuecke" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.vorgel.unterl.beschein" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.summ.anmeldung.vorpapier.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.summ.anmeldung.vorpapier.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.summ.anmeldung.vorpapier.drei" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.containernr" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.nummer.zollverschluss" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.warennr.kn8" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.befkosten.zahlungsweise" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.urspr.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.vers.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.best.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.rohmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.eigenmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.stat.wert" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.anmeldung" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.bes.masseeinheit" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.bes.vermerke" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.undg" class="java.lang.String"/>
+	<field name="eexpdat.pos.6.posnr" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.vers.ausf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.empf.eori" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.befmittel.abgang.kennz" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.verfahren" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.bezugsnummer" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.warenbezeichnung" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.anzahl.art.zeichen.nummern.packstuecke" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.vorgel.unterl.beschein" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.summ.anmeldung.vorpapier.eins" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.summ.anmeldung.vorpapier.zwei" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.summ.anmeldung.vorpapier.drei" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.containernr" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.nummer.zollverschluss" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.warennr.kn8" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.befkosten.zahlungsweise" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.urspr.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.vers.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.best.land.code" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.rohmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.eigenmasse" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.stat.wert" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.anmeldung" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.bes.masseeinheit" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.bes.vermerke" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.undg" class="java.lang.String"/>
+	<field name="eexpdat.pos.7.posnr" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="842" splitType="Stretch">
+			<line>
+				<reportElement x="56" y="190" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="36" width="1" height="47"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="82" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="314" y="37" width="1" height="45"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="315" y="58" width="43" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="357" y="59" width="1" height="23"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="336" y="72" width="1" height="11"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="570" y="24" width="1" height="59"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="372" y="24" width="1" height="59"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="372" y="24" width="198" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="83" width="1" height="662"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="570" y="83" width="1" height="662"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="314" y="83" width="1" height="662"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="744" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="178" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="367" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="272" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="461" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="650" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="554" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="94" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="106" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="118" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="130" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="142" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="154" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="166" width="515" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="185" y="154" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="91" y="82" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="94" width="36" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="478" y="166" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="154" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="478" y="130" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="378" y="166" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="378" y="154" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="428" y="154" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="91" y="178" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="91" y="272" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="91" y="367" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="91" y="461" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="91" y="554" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="91" y="650" width="1" height="12"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="190" width="36" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="284" width="36" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="379" width="36" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="473" width="36" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="566" width="36" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="662" width="36" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="36" width="259" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="284" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="379" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="473" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="567" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="662" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="202" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="214" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="226" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="237" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="249" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="261" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="296" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="308" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="320" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="332" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="344" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="356" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="402" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="426" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="390" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="438" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="414" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="450" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="496" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="519" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="484" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="531" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="508" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="543" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="626" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="603" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="579" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="591" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="614" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="56" y="638" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="57" y="721" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="57" y="698" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="57" y="674" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="57" y="686" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="57" y="709" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="57" y="733" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="478" y="260" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="428" y="249" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="227" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="478" y="249" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="185" y="249" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="378" y="260" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="378" y="249" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="428" y="344" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="344" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="378" y="344" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="322" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="378" y="355" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="355" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="185" y="344" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="428" y="439" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="439" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="378" y="439" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="414" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="378" y="450" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="450" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="185" y="439" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="184" y="531" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="378" y="532" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="543" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="509" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="428" y="532" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="531" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="378" y="543" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="184" y="625" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="428" y="626" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="638" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="603" width="1" height="11"/>
+			</line>
+			<line>
+				<reportElement x="378" y="626" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="478" y="626" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="378" y="638" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="185" y="721" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="429" y="721" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="479" y="732" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="479" y="698" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="379" y="721" width="1" height="12"/>
+			</line>
+			<line>
+				<reportElement x="479" y="720" width="1" height="13"/>
+			</line>
+			<line>
+				<reportElement x="379" y="732" width="1" height="12"/>
+			</line>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="a2878097-ca5b-4096-b5cd-1db5de5ea8db" x="190" y="0" width="131" height="72"/>
+				<imageExpression><![CDATA[$P{formDir} + "EExpDatPosition.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement isPrintRepeatedValues="false" x="2" y="6" width="126" height="60" uuid="07fd9af0-ee11-4245-9648-65e590d5d33e"/>
+				<imageExpression><![CDATA[LOAD_IMAGE("background_loaded")]]></imageExpression>
+			</image>
+			<image>
+				<reportElement isPrintRepeatedValues="false" x="2" y="6" width="126" height="60" uuid="07fd9af0-ee11-4245-9648-65e590d5d33e"/>
+				<imageExpression><![CDATA[LOAD_IMAGE("background_loaded", "png")]]></imageExpression>
+			</image>
+			<image>
+				<reportElement isPrintRepeatedValues="false" x="2" y="6" width="126" height="60" uuid="07fd9af0-ee11-4245-9648-65e590d5d33e"/>
+				<imageExpression><![CDATA[LOAD_IMAGE("background_loaded_locale")]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="57" y="14" width="258" height="22"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Liberation Sans Narrow" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EUROPÄISCHE GEMEINSCHAFT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="37" width="257" height="45"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Liberation Sans Narrow" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EPAS - LISTE DER WARENPOSITIONEN - AUSFUHR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="95" width="55" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Versender/Ausführer (2)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="83" width="32" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[32 Pos. Nr.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="83" width="174" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Anzahl und Art der Packstücke; Zeichen und Nummern der Packstücke (31/1)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="59" width="42" height="7"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Vordrucke (3)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="374" y="25" width="196" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[A VERSENDUNGS-/AUSFUHRZOLLSTELLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="107" width="126" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Kennzeichen des Beförderungsmittels beim Abgang (18)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="119" width="44" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Bezugsnummer (7)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="131" width="105" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Vorgelegte Unterlagen/Bescheinigungen (44/1)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="143" width="65" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Besondere Vermerke (44/2)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="155" width="32" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[UNDG (44/4)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="167" width="65" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Besondere Maßeinheit (41)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="155" width="126" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Beförderungskosten, Code für die Zahlungsweise (S29)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="83" width="61" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Warenbezeichnung (31/2)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="95" width="39" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Empfänger (8)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="107" width="39" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Verfahren (37)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="119" width="92" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Summarische Anmeldung/Vorpapier (40)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="131" width="55" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Container Nr. (31/3)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="131" width="90" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Nummer des Zollverschlusses (S28)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="143" width="55" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Warennnummer (33)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="155" width="55" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Urspr.land Code(34)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="155" width="48" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[15 Vers./Ausf.L.Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="155" width="48" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Bestimm.L.Code (17)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="155" width="48" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Rohmasse (kg) (35)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="167" width="48" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Eigenmasse (kg) (38)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="167" width="39" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Anmeldung (1)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="167" width="50" height="7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<text><![CDATA[Statistischer Wert (46)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="755" width="36" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="10"/>
+				</textElement>
+				<text><![CDATA[033026]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="92" y="755" width="280" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="9"/>
+				</textElement>
+				<text><![CDATA[Einheitspapier Ausfuhr/Sicherheit - Liste der Warenpositionen (2009)]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="115" y="95" width="199" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.vers.ausf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="356" y="95" width="214" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.empf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="104" y="111" width="210" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.befmittel.abgang.kennz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="356" y="107" width="214" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.verfahren}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="104" y="119" width="210" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.bezugsnummer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="378" y="83" width="192" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.warenbezeichnung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="87" width="220" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.anzahl.art.zeichen.nummern.packstuecke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="104" y="135" width="210" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.vorgel.unterl.beschein}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="409" y="123" width="192" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.summ.anmeldung.vorpapier.drei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="372" y="131" width="106" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.containernr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="135" width="90" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.nummer.zollverschluss}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="372" y="142" width="198" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.warennr.kn8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="159" width="126" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.befkosten.zahlungsweise}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="159" width="61" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.urspr.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="159" width="48" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.vers.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="159" width="48" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.best.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="159" width="90" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.rohmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="171" width="90" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.eigenmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="171" width="98" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.stat.wert}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="171" width="61" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.anmeldung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="125" y="143" width="189" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.bes.vermerke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="91" y="155" width="95" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.undg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="87" width="32" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.posnr}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="327" y="220" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="369" y="220" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="327" y="314" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="369" y="314" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="327" y="408" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="369" y="408" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="369" y="502" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="327" y="502" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="369" y="597" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="327" y="597" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="369" y="692" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="327" y="692" width="2" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="363" y="123" width="37" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.summ.anmeldung.vorpapier.zwei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="348" y="123" width="10" height="7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.1.summ.anmeldung.vorpapier.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="191" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.empf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="227" width="90" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.nummer.zollverschluss}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="191" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.vers.ausf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="179" width="220" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.anzahl.art.zeichen.nummern.packstuecke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="203" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.befmittel.abgang.kennz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="250" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.vers.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="262" width="98" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.stat.wert}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="238" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.warennr.kn8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="378" y="215" width="192" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.summ.anmeldung.vorpapier.drei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="250" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.best.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="250" width="125" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.undg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="250" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.rohmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="227" width="161" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.containernr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="227" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.vorgel.unterl.beschein}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="262" width="61" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.anmeldung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="250" width="61" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.urspr.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="262" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.eigenmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="330" y="215" width="39" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.summ.anmeldung.vorpapier.zwei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="215" width="10" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.summ.anmeldung.vorpapier.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="203" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.verfahren}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="188" y="250" width="126" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.befkosten.zahlungsweise}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="215" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.bezugsnummer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="60" y="238" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.bes.vermerke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="179" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.warenbezeichnung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="179" width="32" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.2.posnr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="321" width="90" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.nummer.zollverschluss}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="93" y="273" width="220" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.anzahl.art.zeichen.nummern.packstuecke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="273" width="32" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.posnr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="344" width="126" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.befkosten.zahlungsweise}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="309" width="10" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.summ.anmeldung.vorpapier.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="285" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.vers.ausf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="273" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.warenbezeichnung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="356" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.eigenmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="297" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.befmittel.abgang.kennz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="285" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.empf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="356" width="98" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.stat.wert}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="344" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.best.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="297" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.verfahren}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="329" y="309" width="39" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.summ.anmeldung.vorpapier.zwei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="344" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.vers.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="332" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.bes.vermerke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="344" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.rohmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="344" width="61" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.urspr.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="321" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.vorgel.unterl.beschein}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="309" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.bezugsnummer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="332" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.warennr.kn8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="344" width="125" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.undg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="321" width="161" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.containernr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="377" y="309" width="192" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.summ.anmeldung.vorpapier.drei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="356" width="61" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.3.anmeldung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="439" width="61" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.urspr.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="439" width="126" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.befkosten.zahlungsweise}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="368" width="32" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.posnr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="368" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.warenbezeichnung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="377" y="404" width="192" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.summ.anmeldung.vorpapier.drei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="380" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.vers.ausf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="427" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.bes.vermerke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="451" width="98" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.stat.wert}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="392" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.befmittel.abgang.kennz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="439" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.vers.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="416" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.vorgel.unterl.beschein}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="404" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.bezugsnummer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="439" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.rohmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="404" width="10" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.summ.anmeldung.vorpapier.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="416" width="161" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.containernr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="392" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.verfahren}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="439" width="125" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.undg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="451" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.eigenmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="329" y="404" width="39" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.summ.anmeldung.vorpapier.zwei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="451" width="61" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.anmeldung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="427" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.warennr.kn8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="380" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.empf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="416" width="90" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.nummer.zollverschluss}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="93" y="368" width="220" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.anzahl.art.zeichen.nummern.packstuecke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="439" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.4.best.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="462" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.warenbezeichnung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="474" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.empf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="545" width="98" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.stat.wert}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="474" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.vers.ausf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="510" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.vorgel.unterl.beschein}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="329" y="498" width="39" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.summ.anmeldung.vorpapier.zwei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="533" width="61" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.urspr.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="533" width="126" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.befkosten.zahlungsweise}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="377" y="498" width="192" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.summ.anmeldung.vorpapier.drei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="462" width="32" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.posnr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="486" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.verfahren}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="533" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.vers.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="545" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.eigenmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="545" width="61" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.anmeldung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="486" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.befmittel.abgang.kennz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="498" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.bezugsnummer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="93" y="462" width="220" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.anzahl.art.zeichen.nummern.packstuecke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="521" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.bes.vermerke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="498" width="10" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.summ.anmeldung.vorpapier.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="510" width="161" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.containernr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="533" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.rohmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="521" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.warennr.kn8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="533" width="125" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.undg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="510" width="90" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.nummer.zollverschluss}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="533" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.5.best.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="556" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.warenbezeichnung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="568" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.empf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="381" y="639" width="98" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.stat.wert}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="568" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.vers.ausf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="604" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.vorgel.unterl.beschein}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="329" y="592" width="39" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.summ.anmeldung.vorpapier.zwei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="628" width="61" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.urspr.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="627" width="126" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.befkosten.zahlungsweise}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="377" y="592" width="192" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.summ.anmeldung.vorpapier.drei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="556" width="32" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.posnr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="580" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.verfahren}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="380" y="627" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.vers.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="639" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.eigenmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="639" width="61" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.anmeldung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="580" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.befmittel.abgang.kennz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="592" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.bezugsnummer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="93" y="556" width="220" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.anzahl.art.zeichen.nummern.packstuecke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="615" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.bes.vermerke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="592" width="10" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.summ.anmeldung.vorpapier.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="604" width="161" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.containernr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="627" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.rohmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="615" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.warennr.kn8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="627" width="125" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.undg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="604" width="90" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.nummer.zollverschluss}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="430" y="627" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.6.best.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="722" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.rohmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="687" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.bezugsnummer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="710" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.warennr.kn8}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="329" y="687" width="39" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.summ.anmeldung.vorpapier.zwei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="93" y="651" width="220" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.anzahl.art.zeichen.nummern.packstuecke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="734" width="90" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.eigenmasse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="710" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.bes.vermerke}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="651" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.warenbezeichnung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="480" y="699" width="90" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.nummer.zollverschluss}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="699" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.vorgel.unterl.beschein}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="381" y="734" width="98" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.stat.wert}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="722" width="126" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.befkosten.zahlungsweise}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="722" width="125" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.undg}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="381" y="722" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.vers.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="687" width="10" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.summ.anmeldung.vorpapier.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="723" width="61" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.urspr.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="651" width="32" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.posnr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="663" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.empf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="722" width="48" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.best.land.code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="675" width="253" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.verfahren}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="675" width="254" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.befmittel.abgang.kennz}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="377" y="687" width="192" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.summ.anmeldung.vorpapier.drei}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="734" width="61" height="11"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.anmeldung}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="699" width="161" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.containernr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="59" y="663" width="254" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Liberation Sans" size="5"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.7.vers.ausf.eori}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="317" y="67" width="19" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.vordruck.eins}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="338" y="67" width="19" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{eexpdat.pos.vordruck.zwei}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

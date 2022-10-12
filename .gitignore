@@ -1,0 +1,45 @@
+# Ignore directories only used at build time
+build/
+bin/
+out/
+dist/
+formData/
+.settings/
+build.properties
+junit*.properties
+.gradle
+
+# Mac OS/X
+.DS_Store
+
+# The RSI Keystore should not be under git's control. Ever.
+RSI_KEYSTORE
+
+# Eclipse checkstyle config
+*/.checkstyle
+
+# Common swap files be gone
+*.swp
+*~
+
+# Ignore compiled forms in src/forms (global level) and underneath (org,
+# legal entity, branch level)
+src/forms/*.jasper
+src/forms/*/*.jasper
+src/forms/*/*/*.jasper
+src/forms/*/*/*/*.jasper
+
+core/src/help/local/
+core/src/help/local/*
+
+# Bamboo build number
+build-number.txt
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+.idea/
+.idea_modules/
+
+deps
