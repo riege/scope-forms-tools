@@ -28,6 +28,7 @@ task (copyResources, type: Sync) {
     from(formsSourceDir) {
         exclude '**/*.jrxml'
         exclude '**/*.jasper'
+        exclude '**/.settings/**'
     }
     into formsOutputDir
     preserve {
