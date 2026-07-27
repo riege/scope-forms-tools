@@ -31,8 +31,8 @@ dependencies {
     compile 'com.typesafe.akka:akka-actor_2.12:2.5.20'
     compile 'com.typesafe.akka:akka-slf4j_2.12:2.5.20'
     compile 'net.sf.barcode4j:barcode4j:2.1'
-    compile 'net.sf.jasperreports:jasperreports-fonts:6.14.0'
-    compile 'net.sf.jasperreports:jasperreports:6.14.0'
+    compile 'net.sf.jasperreports:jasperreports-fonts:6.21.5'
+    compile 'net.sf.jasperreports:jasperreports:6.21.5'
     compile 'net.sourceforge.barbecue:barbecue:1.5-beta1'
     compile 'org.apache.xmlgraphics:batik-bridge:1.10'
     compile 'org.apache.xmlgraphics:batik-codec:1.10'
@@ -50,4 +50,3 @@ compileGroovy {
 test {
     ignoreFailures = true
 }
-
