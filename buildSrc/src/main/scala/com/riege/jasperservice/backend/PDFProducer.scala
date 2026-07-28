@@ -139,7 +139,7 @@ class PDFProducer(
         @throws[DocumentException]
         override def exportText(text: JRPrintText): Unit = {
           if (text.getFontName.contains("Liberation Mono")) {
-            pdfContentByte.setHorizontalScaling(118.0f)
+            //pdfContentByte.setHorizontalScaling(118.0f)
           }
           super.exportText(text)
         }
