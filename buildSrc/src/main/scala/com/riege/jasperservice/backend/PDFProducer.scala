@@ -5,28 +5,24 @@
 
 package com.riege.jasperservice.backend
 
-import java.io.BufferedOutputStream
-import java.net.{URL, URLClassLoader}
-import java.util
-
-import scala.util.control.NonFatal
-
 import akka.actor.{Actor, ActorLogging, Props, Status}
-
+import better.files.{File, _}
+import com.lowagie.text.pdf.PdfWriter
 import com.riege.jasperservice.FileUtils
 import com.riege.jasperservice.backend.FormsLoader.PROPERTY_FORM_DIR
 import com.riege.jasperservice.functions.JasperServiceFunctions
 import com.riege.jasperservice.model.{PDFDocument, PDFRawData, Simulations}
-
-import better.files.{File, _}
-import com.lowagie.text.DocumentException
-import com.lowagie.text.pdf.PdfWriter
 import net.sf.jasperreports.engine.data.JRMapCollectionDataSource
 import net.sf.jasperreports.engine.export.JRPdfExporter
-import net.sf.jasperreports.engine.{JRParameter, JRPrintText, JasperFillManager, JasperPrint, JasperReport}
+import net.sf.jasperreports.engine.{JRParameter, JasperFillManager, JasperPrint, JasperReport}
 import net.sf.jasperreports.export.`type`.PdfaConformanceEnum
 import net.sf.jasperreports.export.{SimpleExporterInput, SimpleOutputStreamExporterOutput, SimplePdfExporterConfiguration}
 import org.apache.batik.ext.awt.image.spi.ImageTagRegistry
+
+import java.io.BufferedOutputStream
+import java.net.{URL, URLClassLoader}
+import java.util
+import scala.util.control.NonFatal
 
 object PDFProducer {
 
@@ -74,7 +70,7 @@ class PDFProducer(
     val ctx = data.context
     val formLoader = new FormsLoader(ctx, formsStore)
     val form = formLoader.getForm(data.formName, Option(ctx.locale))
-    val exporter = getJRExporter(data)
+    val exporter = new JRPdfExporter
     val printable = createPrintable(data, formLoader, form)
     val ec = new SimplePdfExporterConfiguration
     if (data.pdfa) {
@@ -128,25 +124,6 @@ class PDFProducer(
         Some(form.getProperty(FormsLoader.PROPERTY_FORM_FILE)),
         printable._2
       )
-    }
-  }
-
-  private def getJRExporter(data: PDFRawData): JRPdfExporter = {
-    if (data.context.isCMRWaybill) {
-      // CMR printing requires special handling.
-      new JRPdfExporter() {
-
-        @throws[DocumentException]
-        override def exportText(text: JRPrintText): Unit = {
-          if (text.getFontName.contains("Liberation Mono")) {
-            pdfContentByte.setHorizontalScaling(118.0f)
-          }
-          super.exportText(text)
-        }
-
-      }
-    } else {
-      new JRPdfExporter
     }
   }
 
