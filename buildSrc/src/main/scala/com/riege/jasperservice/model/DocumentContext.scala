@@ -1,12 +1,11 @@
 /*
- * Copyright (c) 2022 Riege Software International. All rights reserved.
+ * Copyright (c) 2017 Riege Software International. All rights reserved.
  * Use is subject to license terms.
  */
 
 package com.riege.jasperservice.model
 
-import java.io.File
-import java.util.{Locale, StringJoiner}
+import java.util.Locale
 
 object DocumentContext {
 
@@ -92,24 +91,4 @@ final case class DocumentContext(
 ) {
 
   def isCMRWaybill: Boolean = mimeType.startsWith("x-scope/fwd-cmrWaybill-page")
-
-  def toCatchMessage(scopeURL: Option[String], formFile: Option[File]): String =
-    new StringJoiner("\n")
-      .add("h2. Environment")
-      .add(s"|| Scope Domain | $domain |")
-      .add(s"|| Scope URL | ${scopeURL.getOrElse(systemID)} |")
-      .add(s"|| Scope Version | $version |")
-      .add(s"|| Organization | $organizationCode {{($organizationOID)}} |")
-      .add(s"|| Legal Entity | $legalEntityCode {{($legalEntityOID)}} |")
-      .add(s"|| Branch | $branchCode {{($branchOID)}} |")
-      .add(s"|| Country | $countryCode {{($countryOID)}} |")
-      .add(s"|| Locale | $locale |")
-      .add(s"|| User | $userID |")
-      .add("")
-      .add("h2. Printout")
-      .add(s"|| Entity OID | {{$entityOID}} |")
-      .add(s"|| MIME Type | $mimeTypeDescription {{($mimeType)}} |")
-      .add(s"|| Form File | {{${formFile.map(_.getAbsolutePath).getOrElse("unknown")}}} |")
-      .toString
-
 }
