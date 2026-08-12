@@ -109,8 +109,12 @@ class RenderFormsTask extends DefaultTask {
             println "Rebuilding ${data.file}"
             try {
                 byte[] pdf
-                pdf = LocalJasperService.instance().render(data.jasperServiceData)
-                pdf = PdfCreator.addTestOverlay(pdf)
+                if (data.textData != null) {
+                    pdf = LocalJasperService.instance().render(data.textData)
+                } else {
+                    pdf = LocalJasperService.instance().render(data.jasperServiceData)
+                    pdf = PdfCreator.addTestOverlay(pdf)
+                }
                 writePdfToOutputDir(data.outputName, pdf)
             } catch (Exception e) {
                 handleRendererException(data.file, e)

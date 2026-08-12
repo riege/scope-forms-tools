@@ -13,6 +13,7 @@ import com.riege.jasperservice.model.Report
 import scala.Option$
 import scala.collection.JavaConverters
 
+import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
@@ -42,11 +43,24 @@ class FormRenderDataFactory {
             )
         } else {
             data = LocalJasperService.instance().read(file.toString())
-            result = new FormRenderData(
-                    jasperServiceData: data,
-                    file: file.toFile(),
-                    fileName: dataDir.relativize(file),
-            )
+            // why only do this for cmr files???
+            if (data.formName().toLowerCase().startsWith("cmr")) {
+                def textFile = Path.of(file.toString().replaceFirst("\\.json\$", ".text.json"))
+                result = new FormRenderData(
+                        jasperServiceData: data,
+                        textData: Files.exists(textFile)
+                        ? LocalJasperService.instance().readText(textFile.toString())
+                        : null,
+                        file: file.toFile(),
+                        fileName: dataDir.relativize(file),
+                )
+            } else {
+                result = new FormRenderData(
+                        jasperServiceData: data,
+                        file: file.toFile(),
+                        fileName: dataDir.relativize(file),
+                )
+            }
         }
         def localeOption = Option$.MODULE$.apply(data.context().locale())
         def loader = new FormsLoader(data.context(), formPath.out.toString(), false)

@@ -15,7 +15,7 @@ import akka.util.Timeout
 import better.files.File
 import com.riege.jasperservice.backend._
 import com.riege.jasperservice.frontend.JasperServiceProtocol
-import com.riege.jasperservice.model.{PDFDocument, PDFRawData, TextRawData}
+import com.riege.jasperservice.model.{PDFDocument, PDFRawData, TextDocument, TextRawData}
 
 import spray.json._
 import scala.concurrent.duration.SECONDS
@@ -66,6 +66,7 @@ class LocalJasperService(val fileStore: String, val formsStore: String) extends 
 //  )
 
   val pdfProducer = actorOf(PDFProducer(formsStore, fileStore), "pdf-producer")
+  val textProducer = actorOf(TextProducer(formsStore), "text-producer")
 
   //    pageDimensionResolver = actorOf(PageDimensionResolver(formsStore), "page-dimension-resolver")
   //    textProducer = actorOf(TextProducer(formsStore), "text-producer")
@@ -84,10 +85,6 @@ class LocalJasperService(val fileStore: String, val formsStore: String) extends 
   }
 
   def readText(dataFile: String): TextRawData = {
-//    val defaults : Map[String, JsValue] = Map(
-//      "encryptPDF" -> JsFalse,
-//      "pdfa" -> JsFalse,
-//    )
     val json = File(dataFile).lines(UTF_8).mkString.parseJson
     textRawDataFormat.read(json)
   }
@@ -100,5 +97,12 @@ class LocalJasperService(val fileStore: String, val formsStore: String) extends 
     val bytes = tmpFile.loadBytes
     tmpFile.delete()
     bytes
+  }
+
+  def render(data: TextRawData): Array[Byte] = {
+    val textFuture: Future[Any] = textProducer ? data
+    val result = Await.result(textFuture, timeout.duration)
+    val text = result.asInstanceOf[TextDocument]
+    text.content.getBytes(UTF_8)
   }
 }
