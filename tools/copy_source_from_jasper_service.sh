@@ -42,13 +42,13 @@ echo Written dependencies to "buildSrc/build.gradle"
 
 rm deps_for_gradle
 
-copy_source_file lib
 copy_source_file src/main/scala/com/riege/jasperservice/frontend/JasperServiceProtocol.scala
 copy_source_file src/main/scala/com/riege/jasperservice/backend/BackendException.scala
 copy_source_file src/main/scala/com/riege/jasperservice/backend/PrintException.scala
 copy_source_file src/main/scala/com/riege/jasperservice/backend/FormsLoader.scala
 copy_source_file src/main/scala/com/riege/jasperservice/backend/PDFProducer.scala
 copy_source_file src/main/scala/com/riege/jasperservice/backend/PDFUtils.scala
+copy_source_file src/main/scala/com/riege/jasperservice/backend/TextProducer.scala
 copy_source_file src/main/scala/com/riege/jasperservice/model/Report.scala
 copy_source_file src/main/scala/com/riege/jasperservice/model/Simulations.scala
 copy_source_file src/main/scala/com/riege/jasperservice/model/PageDimension.scala
