@@ -18,8 +18,9 @@ class FormRenderDataFactorySpec extends Specification {
         dataDir: testResources,
         formPath: formPath)
     def testJsonFile = factory.dataDir.resolve('rawData.json')
+    def testJsonTextFile = factory.dataDir.resolve('rawData.text.json')
 
-    def "extract meta data from JSON document"() {
+    def "extract pdf meta data from JSON document"() {
         when:
         def result = factory.load(testJsonFile)
         then:
@@ -72,6 +73,16 @@ class FormRenderDataFactorySpec extends Specification {
 
         then:
         result.hasDependency(formPath.out.resolve("testformdir/EExpDat_circular.jasper"))
+    }
+
+    def "extract text meta data from JSON document"() {
+        when:
+        def result = factory.load(testJsonTextFile)
+        then:
+        result.fileName == "rawData.text.json"
+        result.outputName == "rawData.text.json.txt"
+        result.textData != null
+        result.jasperServiceData == null
     }
 
 }

@@ -1,0 +1,73 @@
+{
+  "formName": "EExpDat",
+  "dataSourceParameterName": "custom.dataSource",
+  "context": {
+    "production": false,
+    "legalEntityCode": "NL",
+    "organizationOID": "4bf7716f-b56f-4523-93db-5484fea8bca0",
+    "systemID": "SCOPE-NLCUS",
+    "domain": "NLCUS",
+    "countryOID": "905ae091-2b9c-470d-8c89-38f8f7b79d00",
+    "branchCode": "ORGBRA",
+    "legalEntityOID": "0d3a7a45-1b11-4c21-8df1-b94d7400fa4c",
+    "locale": "nl-NL",
+    "mimeType": "x-scope/nl-customs-ags-dmsdoc",
+    "version": "10.1.940",
+    "organizationCode": "testFormDir",
+    "entityOID": "84e4305d-beca-441d-bf0e-9cbb928e19c0",
+    "countryCode": "NL",
+    "branchOID": "30880a0c-a34b-4305-8696-8a83db4f3def",
+    "userID": "testuser",
+    "mimeTypeDescription": "EExpDat Test"
+  },
+  "data": {
+    "currentTime": "10:02",
+    "backgroundImage": {
+      "$otype": "IMAGE",
+      "name": "background",
+      "locale": "nl-NL"
+    },
+    "formLanguage": {
+      "$otype": "LOCALE",
+      "locale": "nl-NL"
+    },
+    "declarationVersionID": "1",
+    "currentDateTime": "16-2-2018 10:02",
+    "optionalBackgroundImage": {
+      "$otype": "IMAGE",
+      "name": "optionalBackground",
+      "ext": "svg",
+      "locale": "nl-NL"
+    },
+    "rasterBackgroundImage": {
+      "$otype": "IMAGE",
+      "name": "background",
+      "ext": "png",
+      "locale": "nl-NL"
+    },
+    "responsibleUser": "Test User",
+    "printTime": "10:02",
+    "scope.version.major": {
+      "$otype": "INT",
+      "value": 10
+    },
+    "header": {
+      "$otype": "REPORT",
+      "name": "header",
+      "language": "nl-NL"
+    },
+    "scope.version.minor": {
+      "$otype": "INT",
+      "value": 1
+    },
+    "footer": {
+      "$otype": "REPORT",
+      "name": "footer",
+      "language": "nl-NL"
+    },
+    "currentDate": "16-2-2018"
+  },
+  "pdfa": false,
+  "large": false,
+  "encryptPDF": true
+}

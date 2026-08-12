@@ -31,12 +31,23 @@ class FormRenderDataFactory {
 
     private FormRenderData loadJson(Path file) {
         LocalJasperService.startUp(formPath.out.toString())
-        def data = LocalJasperService.instance().read(file.toString())
-        def result = new FormRenderData(
-            jasperServiceData: data,
-            file: file.toFile(),
-            fileName: dataDir.relativize(file),
-        )
+        def data
+        def result
+        if (file.toString().endsWith(".text.json")) {
+            data = LocalJasperService.instance().readText(file.toString())
+            result = new FormRenderData(
+                textData: data,
+                file: file.toFile(),
+                fileName: dataDir.relativize(file),
+            )
+        } else {
+            data = LocalJasperService.instance().read(file.toString())
+            result = new FormRenderData(
+                    jasperServiceData: data,
+                    file: file.toFile(),
+                    fileName: dataDir.relativize(file),
+            )
+        }
         def localeOption = Option$.MODULE$.apply(data.context().locale())
         def loader = new FormsLoader(data.context(), formPath.out.toString(), false)
         def formDirUri = loader

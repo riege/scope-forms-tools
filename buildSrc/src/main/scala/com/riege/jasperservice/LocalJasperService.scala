@@ -15,9 +15,9 @@ import akka.util.Timeout
 import better.files.File
 import com.riege.jasperservice.backend._
 import com.riege.jasperservice.frontend.JasperServiceProtocol
-import com.riege.jasperservice.model.{PDFDocument, PDFRawData}
-import spray.json._
+import com.riege.jasperservice.model.{PDFDocument, PDFRawData, TextRawData}
 
+import spray.json._
 import scala.concurrent.duration.SECONDS
 import scala.concurrent.{Await, Future}
 
@@ -81,6 +81,15 @@ class LocalJasperService(val fileStore: String, val formsStore: String) extends 
     val fields = json.asJsObject.fields
     val jsonWithDefaults = JsObject(fields ++ defaults.map{ case (k,v) => k -> fields.getOrElse(k, v)})
     pdfRawDataFormat.read(jsonWithDefaults).copy(encryptPDF = false)
+  }
+
+  def readText(dataFile: String): TextRawData = {
+//    val defaults : Map[String, JsValue] = Map(
+//      "encryptPDF" -> JsFalse,
+//      "pdfa" -> JsFalse,
+//    )
+    val json = File(dataFile).lines(UTF_8).mkString.parseJson
+    textRawDataFormat.read(json)
   }
 
   def render(data: PDFRawData): Array[Byte] = {
