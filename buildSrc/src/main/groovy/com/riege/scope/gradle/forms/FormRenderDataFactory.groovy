@@ -144,15 +144,8 @@ class FormRenderDataFactory {
     }
 
     PDFRawData replaceCMRTextlines(PDFRawData pdfRawData, String text) {
-        def data = pdfRawData.data()
-        def scalaLineMaps = text.readLines().collect { line ->
-            def tupleSeq = JavaConverters.asScalaBuffer([
-                new scala.Tuple2("cmrTextLine", line ?: "")
-            ]).toSeq()
-            Map$.MODULE$.apply(tupleSeq)
-        }
-        def scalaLines = JavaConverters.asScalaBuffer(scalaLineMaps).toList()
-        def scalaMap = data.updated("mainreport.dataSource", scalaLines)
+        def scalaLines = buildCmrTextLineRows(text)
+        def updatedData = pdfRawData.data().updated("mainreport.dataSource", scalaLines)
         return new PDFRawData(
             pdfRawData.context(),
             pdfRawData.encryptPDF(),
@@ -160,7 +153,21 @@ class FormRenderDataFactory {
             pdfRawData.formName(),
             pdfRawData.dataSourceParameterName(),
             pdfRawData.backgroundImage(),
-            scalaMap
+            updatedData
         )
+    }
+
+    private def buildCmrTextLineRows(String text) {
+        def scalaLineMaps = (text?.readLines() ?: []).collect { line ->
+            createSingleEntryScalaMap("cmrTextLine", line ?: "")
+        }
+        JavaConverters.asScalaBuffer(scalaLineMaps).toList()
+    }
+
+    private def createSingleEntryScalaMap(String key, String value) {
+        def tupleSeq = JavaConverters.asScalaBuffer([
+            new scala.Tuple2(key, value)
+        ]).toSeq()
+        Map$.MODULE$.apply(tupleSeq)
     }
 }
