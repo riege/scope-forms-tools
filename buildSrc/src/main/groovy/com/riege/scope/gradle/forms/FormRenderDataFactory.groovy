@@ -45,7 +45,7 @@ class FormRenderDataFactory {
             )
         } else {
             data = LocalJasperService.instance().read(file.toString())
-            def textFile = Path.of(file.toString().replaceFirst("\\.json\$", ".text.json"))
+            def textFile = Paths.get(file.toString().replaceFirst("\\.json\$", ".text.json"))
             if (data.formName() == "CmrWaybill") {
                 if (Files.exists(textFile)) {
                     def textData = LocalJasperService.instance().readText(textFile.toString())

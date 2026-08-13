@@ -6,6 +6,7 @@
 package com.riege.scope.gradle.forms
 
 
+import com.riege.jasperservice.LocalJasperService
 import spock.lang.Specification
 
 import java.nio.file.Paths
@@ -85,4 +86,20 @@ class FormRenderDataFactorySpec extends Specification {
         result.jasperServiceData == null
     }
 
+    def "replaceCMRTextlines keeps PDFRawData metadata unchanged"() {
+        setup:
+        LocalJasperService.startUp(formPath.out.toString())
+        def baseData = LocalJasperService.instance().read(testJsonFile.toString())
+
+        when:
+        def replaced = factory.replaceCMRTextlines(baseData, "x")
+
+        then:
+        replaced.context() == baseData.context()
+        replaced.encryptPDF() == baseData.encryptPDF()
+        replaced.pdfa() == baseData.pdfa()
+        replaced.formName() == baseData.formName()
+        replaced.dataSourceParameterName() == baseData.dataSourceParameterName()
+        replaced.backgroundImage() == baseData.backgroundImage()
+    }
 }
