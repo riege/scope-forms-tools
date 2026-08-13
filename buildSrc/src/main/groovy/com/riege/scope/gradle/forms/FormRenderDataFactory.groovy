@@ -13,6 +13,7 @@ import com.riege.jasperservice.model.PDFRawData
 import com.riege.jasperservice.model.Report
 import scala.Option$
 import scala.collection.JavaConverters
+import scala.collection.immutable.Map$
 
 import java.nio.file.Files
 import java.nio.file.Path
@@ -143,23 +144,12 @@ class FormRenderDataFactory {
     }
 
     PDFRawData replaceCMRTextlines(PDFRawData pdfRawData, String text) {
-        // "mainreport.dataSource": [
-        //   {
-        //    "cmrTextLine": "                                                                         "
-        //   },
-        //   {
-        //    "cmrTextLine": "RMW Rhein Main Warehouse                          2025 01 10*2           "
-        //   },
-        //   {
-        //    "cmrTextLine": "Langer Kornweg34a                                                        "
-        //   } ]
-        // replace mainreport.dataSource in map PDFRawData.data() with new text lines
         def data = pdfRawData.data()
         def scalaLineMaps = text.readLines().collect { line ->
             def tupleSeq = JavaConverters.asScalaBuffer([
                 new scala.Tuple2("cmrTextLine", line ?: "")
             ]).toSeq()
-            scala.collection.immutable.Map$.MODULE$.apply(tupleSeq)
+            Map$.MODULE$.apply(tupleSeq)
         }
         def scalaLines = JavaConverters.asScalaBuffer(scalaLineMaps).toList()
         def scalaMap = data.updated("mainreport.dataSource", scalaLines)
