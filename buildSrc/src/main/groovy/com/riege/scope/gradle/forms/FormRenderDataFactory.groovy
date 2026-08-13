@@ -9,6 +9,7 @@ import com.riege.jasperservice.LocalJasperService
 import com.riege.jasperservice.backend.FormsLoader
 import com.riege.jasperservice.backend.FormsLoader$
 import com.riege.jasperservice.model.Image
+import com.riege.jasperservice.model.PDFRawData
 import com.riege.jasperservice.model.Report
 import scala.Option$
 import scala.collection.JavaConverters
@@ -43,24 +44,21 @@ class FormRenderDataFactory {
             )
         } else {
             data = LocalJasperService.instance().read(file.toString())
-            // why only do this for cmr files???
-            if (data.formName().toLowerCase().startsWith("cmr")) {
-                def textFile = Path.of(file.toString().replaceFirst("\\.json\$", ".text.json"))
-                result = new FormRenderData(
-                        jasperServiceData: data,
-                        textData: Files.exists(textFile)
-                        ? LocalJasperService.instance().readText(textFile.toString())
-                        : null,
-                        file: file.toFile(),
-                        fileName: dataDir.relativize(file),
-                )
-            } else {
-                result = new FormRenderData(
-                        jasperServiceData: data,
-                        file: file.toFile(),
-                        fileName: dataDir.relativize(file),
-                )
+            def textFile = Path.of(file.toString().replaceFirst("\\.json\$", ".text.json"))
+            if (data.formName() == "CmrWaybill") {
+                if (Files.exists(textFile)) {
+                    def textData = LocalJasperService.instance().readText(textFile.toString())
+                    def generatedText = LocalJasperService.instance().render(textData)
+                    data = replaceCMRTextlines(data, new String(generatedText))
+                }
             }
+            result = new FormRenderData(
+                    jasperServiceData: data,
+                    file: file.toFile(),
+                    fileName: dataDir.relativize(file),
+            )
+            result.addDependency(textFile)
+
         }
         def localeOption = Option$.MODULE$.apply(data.context().locale())
         def loader = new FormsLoader(data.context(), formPath.out.toString(), false)
@@ -144,4 +142,37 @@ class FormRenderDataFactory {
         }
     }
 
+    PDFRawData replaceCMRTextlines(PDFRawData pdfRawData, String text) {
+        // "mainreport.dataSource": [
+        //   {
+        //    "cmrTextLine": "                                                                         "
+        //   },
+        //   {
+        //    "cmrTextLine": "RMW Rhein Main Warehouse                          2025 01 10*2           "
+        //   },
+        //   {
+        //    "cmrTextLine": "Langer Kornweg34a                                                        "
+        //   } ]
+        // replace mainreport.dataSource in map PDFRawData.data() with new text lines
+        def data = pdfRawData.data()
+        def newData = data.collect { k, v ->
+            if (k == "mainreport.dataSource") {
+                def lines = text.readLines().collect { line ->
+                    [cmrTextLine: line] }
+                [k, lines]
+            } else {
+                [k, v]
+            }}
+        // convert list to scala map
+        def scalaMap = JavaConverters.mapAsScalaMap(newData.collectEntries {it})
+        return new PDFRawData(
+            pdfRawData.context(),
+            pdfRawData.encryptPDF(),
+            pdfRawData.pdfa(),
+            pdfRawData.formName(),
+            pdfRawData.dataSourceParameterName(),
+            pdfRawData.backgroundImage(),
+            scalaMap
+        )
+    }
 }
