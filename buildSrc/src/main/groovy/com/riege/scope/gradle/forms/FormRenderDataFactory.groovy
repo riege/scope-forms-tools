@@ -155,10 +155,10 @@ class FormRenderDataFactory {
         //   } ]
         // replace mainreport.dataSource in map PDFRawData.data() with new text lines
         def data = pdfRawData.data()
-        def lines = text.readLines().collect { line ->
-            [cmrTextLine: line]
+        def scalaLineMaps = text.readLines().collect { line ->
+            JavaConverters.mapAsScalaMap([cmrTextLine: line]).toMap()
         }
-        def scalaLines = JavaConverters.asScalaBuffer(lines).toList()
+        def scalaLines = JavaConverters.asScalaBuffer(scalaLineMaps).toList()
         def scalaMap = data.updated("mainreport.dataSource", scalaLines)
         return new PDFRawData(
             pdfRawData.context(),
