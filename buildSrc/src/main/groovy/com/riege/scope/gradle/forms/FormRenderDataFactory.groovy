@@ -46,12 +46,10 @@ class FormRenderDataFactory {
         } else {
             data = LocalJasperService.instance().read(file.toString())
             def textFile = Paths.get(file.toString().replaceFirst("\\.json\$", ".text.json"))
-            if (data.formName() == "CmrWaybill") {
-                if (Files.exists(textFile)) {
-                    def textData = LocalJasperService.instance().readText(textFile.toString())
-                    def generatedText = LocalJasperService.instance().render(textData)
-                    data = replaceCMRTextlines(data, new String(generatedText))
-                }
+            if (data.formName() == "CmrWaybill" && Files.exists(textFile)) {
+                def textData = LocalJasperService.instance().readText(textFile.toString())
+                def generatedText = LocalJasperService.instance().render(textData)
+                data = replaceCMRTextlines(data, new String(generatedText))
             }
             result = new FormRenderData(
                     jasperServiceData: data,
