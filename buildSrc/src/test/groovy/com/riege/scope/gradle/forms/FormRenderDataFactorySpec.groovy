@@ -20,7 +20,8 @@ class FormRenderDataFactorySpec extends Specification {
         dataDir: testResources,
         formPath: formPath)
     def testJsonFile = factory.dataDir.resolve('rawData.json')
-    def testJsonTextFile = factory.dataDir.resolve('rawData.text.json')
+    def testJsonWithTextFile = factory.dataDir.resolve('pdfWithText.json')
+    def testJsonTextFile = factory.dataDir.resolve('pdfWithText.text.json')
 
     def "extract pdf meta data from JSON document"() {
         when:
@@ -29,7 +30,6 @@ class FormRenderDataFactorySpec extends Specification {
         result.fileName == "rawData.json"
         result.outputName == "rawData.json.pdf"
         result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.jasper"))
-        result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPositionLoaded.jasper"))
         result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPositionLoadedLocale_nl.jasper"))
         result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.png"))
         result.hasDependency(factory.formPath.out.resolve("testformdir/background_loaded.svg"))
@@ -42,6 +42,29 @@ class FormRenderDataFactorySpec extends Specification {
         result.hasDependency(factory.dataDir.resolve("rawData.json"))
         result.hasDependency(factory.formPath.out.resolve("header.jasper"))
         result.hasDependency(factory.formPath.out.resolve("footer.jasper"))
+    }
+
+    def "extract pdf with embedded text meta data from JSON document"() {
+        when:
+        def result = factory.load(testJsonWithTextFile)
+        then:
+        result.fileName == "pdfWithText.json"
+        result.outputName == "pdfWithText.json.pdf"
+        result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.jasper"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.png"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/background_loaded.svg"))
+        result.hasDependency(factory.formPath.out.resolve("background_loaded.png"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/background_loaded_locale_nl.svg"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/CmrWaybill.jasper"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/background.svg"))
+        result.hasDependency(factory.formPath.out.resolve("background.png"))
+        result.hasDependency(factory.formPath.out.resolve("optionalBackground.svg"))
+        result.hasDependency(factory.dataDir.resolve("pdfWithText.json"))
+        result.hasDependency(factory.formPath.out.resolve("header.jasper"))
+        result.hasDependency(factory.formPath.out.resolve("footer.jasper"))
+
+        result.hasDependency(factory.dataDir.resolve("pdfWithText.text.json"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/CmrWaybillText.jasper"))
     }
 
     def "extract files referenced via \$P{formDir} expressions"() {
@@ -81,76 +104,9 @@ class FormRenderDataFactorySpec extends Specification {
         when:
         def result = factory.load(testJsonTextFile)
         then:
-        result.fileName == "rawData.text.json"
-        result.outputName == "rawData.text.json.txt"
+        result.fileName == "pdfWithText.text.json"
+        result.outputName == "pdfWithText.text.json.txt"
         result.textData != null
         result.jasperServiceData == null
-    }
-
-    def "replaceCMRTextlines keeps PDFRawData metadata unchanged"() {
-        setup:
-        LocalJasperService.startUp(formPath.out.toString())
-        def baseData = LocalJasperService.instance().read(testJsonFile.toString())
-
-        when:
-        def replaced = factory.replaceCMRTextlines(baseData, "x")
-
-        then:
-        replaced.context() == baseData.context()
-        replaced.encryptPDF() == baseData.encryptPDF()
-        replaced.pdfa() == baseData.pdfa()
-        replaced.formName() == baseData.formName()
-        replaced.dataSourceParameterName() == baseData.dataSourceParameterName()
-        replaced.backgroundImage() == baseData.backgroundImage()
-    }
-
-    def "replaceCMRTextlines replaces mainreport datasource with expected lines"() {
-        setup:
-        LocalJasperService.startUp(formPath.out.toString())
-        def baseData = LocalJasperService.instance().read(testJsonFile.toString())
-
-        when:
-        def replaced = factory.replaceCMRTextlines(baseData, "first\n\nthird")
-        def javaMap = JavaConverters.mapAsJavaMap(replaced.data())
-        def scalaLines = javaMap.get("mainreport.dataSource")
-        def lines = JavaConverters.seqAsJavaList(scalaLines)
-        def row1 = JavaConverters.mapAsJavaMap(lines[0])
-        def row2 = JavaConverters.mapAsJavaMap(lines[1])
-        def row3 = JavaConverters.mapAsJavaMap(lines[2])
-
-        then:
-        lines.size() == 3
-        row1.get("cmrTextLine") == "first"
-        row2.get("cmrTextLine") == ""
-        row3.get("cmrTextLine") == "third"
-    }
-
-    def "createSingleEntryScalaMap creates scala map with one entry"() {
-        when:
-        def method = FormRenderDataFactory.getDeclaredMethod("createSingleEntryScalaMap", String, String)
-        method.accessible = true
-        def scalaMap = method.invoke(factory, "cmrTextLine", "abc")
-        def javaMap = JavaConverters.mapAsJavaMap(scalaMap)
-
-        then:
-        javaMap.size() == 1
-        javaMap.get("cmrTextLine") == "abc"
-    }
-
-    def "buildCmrTextLineRows creates scala list of scala maps"() {
-        when:
-        def method = FormRenderDataFactory.getDeclaredMethod("buildCmrTextLineRows", String)
-        method.accessible = true
-        def scalaLines = method.invoke(factory, "a\n\nc")
-        def lines = JavaConverters.seqAsJavaList(scalaLines)
-        def row1 = JavaConverters.mapAsJavaMap(lines[0])
-        def row2 = JavaConverters.mapAsJavaMap(lines[1])
-        def row3 = JavaConverters.mapAsJavaMap(lines[2])
-
-        then:
-        lines.size() == 3
-        row1.get("cmrTextLine") == "a"
-        row2.get("cmrTextLine") == ""
-        row3.get("cmrTextLine") == "c"
     }
 }

@@ -8,6 +8,7 @@ package com.riege.scope.gradle.forms
 import com.riege.jasperservice.LocalJasperService
 import com.riege.jasperservice.backend.FormsLoader
 import com.riege.jasperservice.backend.FormsLoader$
+import com.riege.jasperservice.model.DocumentContext
 import com.riege.jasperservice.model.Image
 import com.riege.jasperservice.model.PDFRawData
 import com.riege.jasperservice.model.Report
@@ -34,42 +35,51 @@ class FormRenderDataFactory {
 
     private FormRenderData loadJson(Path file) {
         LocalJasperService.startUp(formPath.out.toString())
-        def data
-        def result
-        if (file.toString().endsWith(".text.json")) {
-            data = LocalJasperService.instance().readText(file.toString())
-            result = new FormRenderData(
-                textData: data,
-                file: file.toFile(),
-                fileName: dataDir.relativize(file),
-            )
-        } else {
-            data = LocalJasperService.instance().read(file.toString())
-            def textFile = Paths.get(file.toString().replaceFirst("\\.json\$", ".text.json"))
-            if (data.formName() == "CmrWaybill" && Files.exists(textFile)) {
-                def textData = LocalJasperService.instance().readText(textFile.toString())
-                def generatedText = LocalJasperService.instance().render(textData)
-                data = replaceCMRTextlines(data, new String(generatedText))
-            }
-            result = new FormRenderData(
-                    jasperServiceData: data,
-                    file: file.toFile(),
-                    fileName: dataDir.relativize(file),
-            )
-            result.addDependency(textFile)
+        DocumentContext context
+        String formName
+        def result = new FormRenderData(
+            file: file.toFile(),
+            fileName: dataDir.relativize(file),
+        )
 
+        if (file.toString().endsWith(".text.json")) {
+            result.textData = LocalJasperService.instance().readText(file.toString())
+            context = result.textData.context()
+            formName = result.textData.formName()
+        } else {
+            result.jasperServiceData = LocalJasperService.instance().read(file.toString())
+            context = result.jasperServiceData.context()
+            formName = result.jasperServiceData.formName()
+
+            if (formName == "CmrWaybill") {
+                def textFile = Paths.get(file.toString().replaceFirst("\\.json\$", ".text.json"))
+                if(Files.exists(textFile)) {
+                    result.textData = LocalJasperService.instance().readText(textFile.toString())
+                }
+                result.addDependency(textFile)
+            }
         }
-        def localeOption = Option$.MODULE$.apply(data.context().locale())
-        def loader = new FormsLoader(data.context(), formPath.out.toString(), false)
+
+        def localeOption = Option$.MODULE$.apply(context.locale())
+        def loader = new FormsLoader(context, formPath.out.toString(), false)
         def formDirUri = loader
-            .getForm(data.formName(), localeOption)
+            .getForm(formName, localeOption)
             .getProperty(FormsLoader$.MODULE$.PROPERTY_FORM_DIR())
         def formDir = Paths.get(new URI(formDirUri).normalize())
-        def formFile = loader.getFile(data.formName() + ".jasper", localeOption).get().toPath()
         result.addDependency(file)
-        result.addDependency(formFile)
-        addFileDependencies(result, formDir, new Form(getFormPath(), formFile), loader)
-        addParameterDependencies(result, JavaConverters.mapAsJavaMap(data.data()), loader)
+
+        if (result.jasperServiceData != null) {
+            def formFile = loader.getFile(result.jasperServiceData.formName() + ".jasper", localeOption).get().toPath()
+            result.addDependency(formFile)
+            addFileDependencies(result, formDir, new Form(getFormPath(), formFile), loader)
+            addParameterDependencies(result, JavaConverters.mapAsJavaMap(result.jasperServiceData.data()), loader)
+        }
+
+        if (result.textData != null) {
+            def formFile = loader.getFile(result.textData.formName() + ".jasper", localeOption).get().toPath()
+            result.addDependency(formFile)
+        }
+
         return result
     }
 
@@ -141,31 +151,4 @@ class FormRenderDataFactory {
         }
     }
 
-    PDFRawData replaceCMRTextlines(PDFRawData pdfRawData, String text) {
-        def scalaLines = buildCmrTextLineRows(text)
-        def updatedData = pdfRawData.data().updated("mainreport.dataSource", scalaLines)
-        return new PDFRawData(
-            pdfRawData.context(),
-            pdfRawData.encryptPDF(),
-            pdfRawData.pdfa(),
-            pdfRawData.formName(),
-            pdfRawData.dataSourceParameterName(),
-            pdfRawData.backgroundImage(),
-            updatedData
-        )
-    }
-
-    private def buildCmrTextLineRows(String text) {
-        def scalaLineMaps = (text?.readLines() ?: []).collect { line ->
-            createSingleEntryScalaMap("cmrTextLine", line ?: "")
-        }
-        JavaConverters.asScalaBuffer(scalaLineMaps).toList()
-    }
-
-    private def createSingleEntryScalaMap(String key, String value) {
-        def tupleSeq = JavaConverters.asScalaBuffer([
-            new scala.Tuple2(key, value)
-        ]).toSeq()
-        Map$.MODULE$.apply(tupleSeq)
-    }
 }

@@ -11,6 +11,7 @@ import com.riege.scope.gradle.forms.FormPath
 import com.riege.scope.gradle.forms.FormRenderData
 import com.riege.scope.gradle.forms.FormRenderDataCache
 import com.riege.scope.gradle.forms.FormRenderDataFactory
+import com.riege.scope.gradle.forms.ParameterReplacer
 import com.riege.scope.gradle.forms.PdfCreator
 import net.sf.jasperreports.engine.JasperReport
 import org.gradle.api.DefaultTask
@@ -109,11 +110,16 @@ class RenderFormsTask extends DefaultTask {
             println "Rebuilding ${data.file}"
             try {
                 byte[] renderedBytes
-                if (data.textData != null) {
-                    renderedBytes = LocalJasperService.instance().render(data.textData)
-                } else {
-                    renderedBytes = LocalJasperService.instance().render(data.jasperServiceData)
+                if (data.jasperServiceData != null) {
+                    def renderData = data.jasperServiceData
+                    if (data.textData != null && data.jasperServiceData.formName() == "CmrWaybill") {
+                        def generatedText = LocalJasperService.instance().render(data.textData)
+                        renderData = ParameterReplacer.replaceCMRTextlines(data.jasperServiceData, new String(generatedText))
+                    }
+                    renderedBytes = LocalJasperService.instance().render(renderData)
                     renderedBytes = PdfCreator.addTestOverlay(renderedBytes)
+                } else {
+                    renderedBytes = LocalJasperService.instance().render(data.textData)
                 }
                 writePdfToOutputDir(data.outputName, renderedBytes)
             } catch (Exception e) {

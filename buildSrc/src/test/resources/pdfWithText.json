@@ -1,5 +1,5 @@
 {
-  "formName": "EExpDat",
+  "formName": "CmrWaybill",
   "dataSourceParameterName": "custom.dataSource",
   "context": {
     "production": false,
