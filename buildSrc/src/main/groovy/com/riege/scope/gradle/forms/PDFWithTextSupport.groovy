@@ -4,11 +4,21 @@ import com.riege.jasperservice.model.PDFRawData
 import scala.collection.JavaConverters
 import scala.collection.immutable.Map$
 
-class ParameterReplacer {
+class PDFWithTextSupport {
 
-    static PDFRawData replaceCMRTextlines(PDFRawData pdfRawData, String text) {
-        def scalaLines = buildCmrTextLineRows(text)
-        def updatedData = pdfRawData.data().updated("mainreport.dataSource", scalaLines)
+    static boolean isFormSupported(String formName) {
+        return formName == "CmrWaybill"
+    }
+
+    static PDFRawData replaceEmbeddedText(PDFRawData data, String renderedText) {
+        if (data.formName() == "CmrWaybill") {
+            return replaceParameter(data, "mainreport.dataSource", buildCmrTextLineRows(renderedText))
+        }
+        return data
+    }
+
+    private static PDFRawData replaceParameter(PDFRawData pdfRawData, String name, Object scalaLines) {
+        def updatedData = pdfRawData.data().updated(name, scalaLines)
         return new PDFRawData(
             pdfRawData.context(),
             pdfRawData.encryptPDF(),

@@ -51,7 +51,7 @@ class FormRenderDataFactory {
             context = result.jasperServiceData.context()
             formName = result.jasperServiceData.formName()
 
-            if (formName == "CmrWaybill") {
+            if (PDFWithTextSupport.isFormSupported(formName)) {
                 def textFile = Paths.get(file.toString().replaceFirst("\\.json\$", ".text.json"))
                 if(Files.exists(textFile)) {
                     result.textData = LocalJasperService.instance().readText(textFile.toString())
