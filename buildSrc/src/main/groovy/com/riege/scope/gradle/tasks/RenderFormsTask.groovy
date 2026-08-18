@@ -22,6 +22,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.incremental.IncrementalTaskInputs
 import org.gradle.api.tasks.incremental.InputFileDetails
 
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeoutException
 
 class RenderFormsTask extends DefaultTask {
@@ -97,7 +98,7 @@ class RenderFormsTask extends DefaultTask {
         }
         removed.each { change ->
             if (change.file.getCanonicalPath().startsWith(dataDir.getCanonicalPath())) {
-                def relativeFile = new File(outputDir, "${relativeToDataDir(change.file)}.pdf")
+                def relativeFile = new File(outputDir, removedOutputName(change.file))
                 println "Removing ${relativeFile.absolutePath}"
                 relativeFile.delete()
             }
@@ -114,7 +115,7 @@ class RenderFormsTask extends DefaultTask {
                     def renderData = data.jasperServiceData
                     if (data.textData != null) {
                         def generatedText = LocalJasperService.instance().render(data.textData)
-                        renderData = PDFWithTextSupport.replaceEmbeddedText(data.jasperServiceData, new String(generatedText))
+                        renderData = PDFWithTextSupport.replaceEmbeddedText(data.jasperServiceData, new String(generatedText, StandardCharsets.UTF_8))
                     }
                     renderedBytes = LocalJasperService.instance().render(renderData)
                     renderedBytes = PdfCreator.addTestOverlay(renderedBytes)
@@ -166,6 +167,12 @@ class RenderFormsTask extends DefaultTask {
 
     def relativeToDataDir(File dataFile) {
         dataDir.toPath().relativize(dataFile.toPath()).toFile()
+    }
+
+    String removedOutputName(File removedDataFile) {
+        def suffix = removedDataFile.name.endsWith(".text.json") ? ".txt" : ".pdf"
+        return "${relativeToDataDir(removedDataFile)}${suffix}"
+
     }
 
 }
