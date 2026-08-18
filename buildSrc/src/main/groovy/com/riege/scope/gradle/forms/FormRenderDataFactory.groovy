@@ -10,11 +10,9 @@ import com.riege.jasperservice.backend.FormsLoader
 import com.riege.jasperservice.backend.FormsLoader$
 import com.riege.jasperservice.model.DocumentContext
 import com.riege.jasperservice.model.Image
-import com.riege.jasperservice.model.PDFRawData
 import com.riege.jasperservice.model.Report
 import scala.Option$
 import scala.collection.JavaConverters
-import scala.collection.immutable.Map$
 
 import java.nio.file.Files
 import java.nio.file.Path

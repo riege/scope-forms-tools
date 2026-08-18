@@ -5,9 +5,6 @@
 
 package com.riege.scope.gradle.forms
 
-
-import com.riege.jasperservice.LocalJasperService
-import scala.collection.JavaConverters
 import spock.lang.Specification
 
 import java.nio.file.Paths
@@ -108,5 +105,7 @@ class FormRenderDataFactorySpec extends Specification {
         result.outputName == "pdfWithText.text.json.txt"
         result.textData != null
         result.jasperServiceData == null
+        result.hasDependency(factory.dataDir.resolve("pdfWithText.text.json"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/CmrWaybillText.jasper"))
     }
 }
