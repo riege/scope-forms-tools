@@ -97,6 +97,7 @@ class RenderFormsTask extends DefaultTask {
             rebuildSet.addAll(renderList.findAll { it.dependencies.contains(change.file) })
         }
         removed.each { change ->
+            rebuildSet.addAll(rebuildEntriesForRemovedFile(renderList, change.file))
             if (change.file.getCanonicalPath().startsWith(dataDir.getCanonicalPath())) {
                 def relativeFile = new File(outputDir, removedOutputName(change.file))
                 println "Removing ${relativeFile.absolutePath}"
@@ -167,6 +168,15 @@ class RenderFormsTask extends DefaultTask {
 
     def relativeToDataDir(File dataFile) {
         dataDir.toPath().relativize(dataFile.toPath()).toFile()
+    }
+
+    Collection<FormRenderData> rebuildEntriesForRemovedFile(Collection<FormRenderData> renderList, File removedFile) {
+        if (!removedFile.name.endsWith(".text.json")) {
+            return []
+        }
+
+        def pdfDataFile = new File(removedFile.path.replaceFirst(/\.text\.json$/, '.json')).canonicalFile
+        return renderList.findAll { it.file.canonicalFile == pdfDataFile }
     }
 
     String removedOutputName(File removedDataFile) {

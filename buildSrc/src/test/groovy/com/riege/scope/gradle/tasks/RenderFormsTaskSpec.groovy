@@ -91,4 +91,36 @@ class RenderFormsTaskSpec extends Specification {
         tempDataDir.deleteDir()
     }
 
+    def "removed text json rebuilds sibling pdf input"() {
+        setup:
+        File tempOutputDir = File.createTempDir("RenderFormsTaskSpec", "")
+        File tempDataDir = File.createTempDir("RenderFormsTaskSpecData", "")
+        def nested = new File(tempDataDir, "nested")
+        nested.mkdirs()
+        def pdfInput = new File(nested, "document.json")
+        pdfInput.text = "{}"
+        def removedInput = new File(nested, "document.text.json")
+        removedInput.text = "{}"
+        def renderData = new com.riege.scope.gradle.forms.FormRenderData(file: pdfInput, fileName: "nested/document.json")
+        def project = ProjectBuilder.builder().build()
+        def task = project.task('testTaskRebuildSiblingPdf', type: RenderFormsTask) {
+            dataDir = tempDataDir
+            outputDir = tempOutputDir
+            localFormDir = dataDir
+            formSrcDir = dataDir
+            errorForm = new File("src/test/resources/ErrorPDF.jasper")
+        }
+        def removed = [Stub(InputFileDetails) { getFile() >> removedInput }] as ArrayList<InputFileDetails>
+
+        when:
+        def rebuildSet = task.calculateRebuildSet([renderData], [] as ArrayList, removed)
+
+        then:
+        rebuildSet == [renderData] as Set
+
+        cleanup:
+        tempOutputDir.deleteDir()
+        tempDataDir.deleteDir()
+    }
+
 }
