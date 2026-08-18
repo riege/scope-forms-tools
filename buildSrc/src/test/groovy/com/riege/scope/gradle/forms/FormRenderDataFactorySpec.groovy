@@ -5,7 +5,6 @@
 
 package com.riege.scope.gradle.forms
 
-
 import spock.lang.Specification
 
 import java.nio.file.Paths
@@ -18,15 +17,16 @@ class FormRenderDataFactorySpec extends Specification {
         dataDir: testResources,
         formPath: formPath)
     def testJsonFile = factory.dataDir.resolve('rawData.json')
+    def testJsonWithTextFile = factory.dataDir.resolve('pdfWithText.json')
+    def testJsonTextFile = factory.dataDir.resolve('pdfWithText.text.json')
 
-    def "extract meta data from JSON document"() {
+    def "extract pdf meta data from JSON document"() {
         when:
         def result = factory.load(testJsonFile)
         then:
         result.fileName == "rawData.json"
         result.outputName == "rawData.json.pdf"
         result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.jasper"))
-        result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPositionLoaded.jasper"))
         result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPositionLoadedLocale_nl.jasper"))
         result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.png"))
         result.hasDependency(factory.formPath.out.resolve("testformdir/background_loaded.svg"))
@@ -39,6 +39,29 @@ class FormRenderDataFactorySpec extends Specification {
         result.hasDependency(factory.dataDir.resolve("rawData.json"))
         result.hasDependency(factory.formPath.out.resolve("header.jasper"))
         result.hasDependency(factory.formPath.out.resolve("footer.jasper"))
+    }
+
+    def "extract pdf with embedded text meta data from JSON document"() {
+        when:
+        def result = factory.load(testJsonWithTextFile)
+        then:
+        result.fileName == "pdfWithText.json"
+        result.outputName == "pdfWithText.json.pdf"
+        result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.jasper"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/EExpDatPosition.png"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/background_loaded.svg"))
+        result.hasDependency(factory.formPath.out.resolve("background_loaded.png"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/background_loaded_locale_nl.svg"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/CmrWaybill.jasper"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/background.svg"))
+        result.hasDependency(factory.formPath.out.resolve("background.png"))
+        result.hasDependency(factory.formPath.out.resolve("optionalBackground.svg"))
+        result.hasDependency(factory.dataDir.resolve("pdfWithText.json"))
+        result.hasDependency(factory.formPath.out.resolve("header.jasper"))
+        result.hasDependency(factory.formPath.out.resolve("footer.jasper"))
+
+        result.hasDependency(factory.dataDir.resolve("pdfWithText.text.json"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/CmrWaybillText.jasper"))
     }
 
     def "extract files referenced via \$P{formDir} expressions"() {
@@ -74,4 +97,15 @@ class FormRenderDataFactorySpec extends Specification {
         result.hasDependency(formPath.out.resolve("testformdir/EExpDat_circular.jasper"))
     }
 
+    def "extract text meta data from JSON document"() {
+        when:
+        def result = factory.load(testJsonTextFile)
+        then:
+        result.fileName == "pdfWithText.text.json"
+        result.outputName == "pdfWithText.text.json.txt"
+        result.textData != null
+        result.jasperServiceData == null
+        result.hasDependency(factory.dataDir.resolve("pdfWithText.text.json"))
+        result.hasDependency(factory.formPath.out.resolve("testformdir/CmrWaybillText.jasper"))
+    }
 }

@@ -11,6 +11,7 @@ import com.riege.scope.gradle.forms.FormPath
 import com.riege.scope.gradle.forms.FormRenderData
 import com.riege.scope.gradle.forms.FormRenderDataCache
 import com.riege.scope.gradle.forms.FormRenderDataFactory
+import com.riege.scope.gradle.forms.PDFWithTextSupport
 import com.riege.scope.gradle.forms.PdfCreator
 import net.sf.jasperreports.engine.JasperReport
 import org.gradle.api.DefaultTask
@@ -21,6 +22,7 @@ import org.gradle.api.tasks.TaskAction
 import org.gradle.api.tasks.incremental.IncrementalTaskInputs
 import org.gradle.api.tasks.incremental.InputFileDetails
 
+import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeoutException
 
 class RenderFormsTask extends DefaultTask {
@@ -95,8 +97,9 @@ class RenderFormsTask extends DefaultTask {
             rebuildSet.addAll(renderList.findAll { it.dependencies.contains(change.file) })
         }
         removed.each { change ->
+            rebuildSet.addAll(rebuildEntriesForRemovedFile(renderList, change.file))
             if (change.file.getCanonicalPath().startsWith(dataDir.getCanonicalPath())) {
-                def relativeFile = new File(outputDir, "${relativeToDataDir(change.file)}.pdf")
+                def relativeFile = new File(outputDir, removedOutputName(change.file))
                 println "Removing ${relativeFile.absolutePath}"
                 relativeFile.delete()
             }
@@ -108,10 +111,19 @@ class RenderFormsTask extends DefaultTask {
         rebuildSet.each { data ->
             println "Rebuilding ${data.file}"
             try {
-                byte[] pdf
-                pdf = LocalJasperService.instance().render(data.jasperServiceData)
-                pdf = PdfCreator.addTestOverlay(pdf)
-                writePdfToOutputDir(data.outputName, pdf)
+                byte[] renderedBytes
+                if (data.jasperServiceData != null) {
+                    def renderData = data.jasperServiceData
+                    if (data.textData != null) {
+                        def generatedText = LocalJasperService.instance().render(data.textData)
+                        renderData = PDFWithTextSupport.replaceEmbeddedText(data.jasperServiceData, new String(generatedText, StandardCharsets.UTF_8))
+                    }
+                    renderedBytes = LocalJasperService.instance().render(renderData)
+                    renderedBytes = PdfCreator.addTestOverlay(renderedBytes)
+                } else {
+                    renderedBytes = LocalJasperService.instance().render(data.textData)
+                }
+                writePdfToOutputDir(data.outputName, renderedBytes)
             } catch (Exception e) {
                 handleRendererException(data.file, e)
             }
@@ -156,6 +168,21 @@ class RenderFormsTask extends DefaultTask {
 
     def relativeToDataDir(File dataFile) {
         dataDir.toPath().relativize(dataFile.toPath()).toFile()
+    }
+
+    Collection<FormRenderData> rebuildEntriesForRemovedFile(Collection<FormRenderData> renderList, File removedFile) {
+        if (!removedFile.name.endsWith(".text.json")) {
+            return []
+        }
+
+        def pdfDataFile = new File(removedFile.path.replaceFirst(/\.text\.json$/, '.json')).canonicalFile
+        return renderList.findAll { it.file.canonicalFile == pdfDataFile }
+    }
+
+    String removedOutputName(File removedDataFile) {
+        def suffix = removedDataFile.name.endsWith(".text.json") ? ".txt" : ".pdf"
+        return "${relativeToDataDir(removedDataFile)}${suffix}"
+
     }
 
 }

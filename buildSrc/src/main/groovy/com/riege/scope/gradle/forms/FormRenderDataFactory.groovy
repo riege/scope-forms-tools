@@ -8,11 +8,13 @@ package com.riege.scope.gradle.forms
 import com.riege.jasperservice.LocalJasperService
 import com.riege.jasperservice.backend.FormsLoader
 import com.riege.jasperservice.backend.FormsLoader$
+import com.riege.jasperservice.model.DocumentContext
 import com.riege.jasperservice.model.Image
 import com.riege.jasperservice.model.Report
 import scala.Option$
 import scala.collection.JavaConverters
 
+import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
@@ -31,23 +33,51 @@ class FormRenderDataFactory {
 
     private FormRenderData loadJson(Path file) {
         LocalJasperService.startUp(formPath.out.toString())
-        def data = LocalJasperService.instance().read(file.toString())
+        DocumentContext context
+        String formName
         def result = new FormRenderData(
-            jasperServiceData: data,
             file: file.toFile(),
             fileName: dataDir.relativize(file),
         )
-        def localeOption = Option$.MODULE$.apply(data.context().locale())
-        def loader = new FormsLoader(data.context(), formPath.out.toString(), false)
+
+        if (file.toString().endsWith(".text.json")) {
+            result.textData = LocalJasperService.instance().readText(file.toString())
+            context = result.textData.context()
+            formName = result.textData.formName()
+        } else {
+            result.jasperServiceData = LocalJasperService.instance().read(file.toString())
+            context = result.jasperServiceData.context()
+            formName = result.jasperServiceData.formName()
+
+            if (PDFWithTextSupport.isFormSupported(formName)) {
+                def textFile = Paths.get(file.toString().replaceFirst("\\.json\$", ".text.json"))
+                if(Files.exists(textFile)) {
+                    result.textData = LocalJasperService.instance().readText(textFile.toString())
+                }
+                result.addDependency(textFile)
+            }
+        }
+
+        def localeOption = Option$.MODULE$.apply(context.locale())
+        def loader = new FormsLoader(context, formPath.out.toString(), false)
         def formDirUri = loader
-            .getForm(data.formName(), localeOption)
+            .getForm(formName, localeOption)
             .getProperty(FormsLoader$.MODULE$.PROPERTY_FORM_DIR())
         def formDir = Paths.get(new URI(formDirUri).normalize())
-        def formFile = loader.getFile(data.formName() + ".jasper", localeOption).get().toPath()
         result.addDependency(file)
-        result.addDependency(formFile)
-        addFileDependencies(result, formDir, new Form(getFormPath(), formFile), loader)
-        addParameterDependencies(result, JavaConverters.mapAsJavaMap(data.data()), loader)
+
+        if (result.jasperServiceData != null) {
+            def formFile = loader.getFile(result.jasperServiceData.formName() + ".jasper", localeOption).get().toPath()
+            result.addDependency(formFile)
+            addFileDependencies(result, formDir, new Form(getFormPath(), formFile), loader)
+            addParameterDependencies(result, JavaConverters.mapAsJavaMap(result.jasperServiceData.data()), loader)
+        }
+
+        if (result.textData != null) {
+            def formFile = loader.getFile(result.textData.formName() + ".jasper", localeOption).get().toPath()
+            result.addDependency(formFile)
+        }
+
         return result
     }
 
