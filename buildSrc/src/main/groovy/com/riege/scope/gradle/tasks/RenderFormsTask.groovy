@@ -96,7 +96,8 @@ class RenderFormsTask extends DefaultTask {
         def dataDirectory = dataDir.get().asFile.toPath()
         def factory = new FormRenderDataFactory(formPath: getFormPath(), dataDir: dataDirectory)
         def renderList = []
-        dataDirectory.eachFileRecurse { file ->
+        dataDirectory.eachFileRecurse { path ->
+            def file = path.toFile()
             if (isLegacyFile(file)) {
                 logger.warn("Ignoring ${file}. HTML files are no longer supported. Please use the JSON file instead.")
             }
