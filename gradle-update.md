@@ -49,6 +49,10 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 - The affected tests were updated for the new file-based change model.
 - `buildSrc` tests were also updated to a Groovy 3 compatible Spock release and JUnit Platform so they can run under Gradle 8.
 - The build was validated with SDKMAN Java `11.0.20-tem` using `./gradlew buildSrc:test check --stacktrace`.
+- Phase 5 has been implemented.
+- `jcenter()` was removed from `build.gradle` without breaking dependency resolution.
+- Deprecated Groovy DSL space-assignment syntax was replaced with explicit `=` assignments in `build.gradle` and `buildSrc/build.gradle`.
+- The build was revalidated with SDKMAN Java `11.0.20-tem` using `./gradlew check --warning-mode all`.
 
 ### Decisions made
 
@@ -59,7 +63,7 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 
 ### Next phase
 
-- Phase 5: clean up repositories and remaining deprecated build usage.
+- Phase 7: stabilization and follow-up fixes.
 
 ## Migration strategy
 
@@ -212,9 +216,9 @@ This is now the immediate blocker after the wrapper upgrade. It should target Gr
 
 ### Tasks
 
-- [ ] Remove `jcenter()` from `build.gradle` if all dependencies resolve without it.
-- [ ] Keep the Jaspersoft and JitPack repositories only if they are still needed.
-- [ ] Check for any remaining deprecated Gradle DSL usage in `build.gradle` and `buildSrc/build.gradle`.
+- [x] Remove `jcenter()` from `build.gradle` if all dependencies resolve without it.
+- [x] Keep the Jaspersoft and JitPack repositories only if they are still needed.
+- [x] Check for any remaining deprecated Gradle DSL usage in `build.gradle` and `buildSrc/build.gradle`.
 
 ### Expected commit
 
@@ -224,6 +228,12 @@ This is now the immediate blocker after the wrapper upgrade. It should target Gr
 
 - Run `./gradlew dependencies` for relevant configurations if resolution becomes unclear.
 - Run `./gradlew check`
+
+### Status
+
+- Completed.
+- Validated with SDKMAN Java `11.0.20-tem` using `./gradlew check --warning-mode all`.
+- The remaining warning is from Gradle 8 itself: running Gradle on Java 11 is deprecated for Gradle 9, but it is still supported for the current Gradle 8 target.
 
 ---
 
@@ -305,7 +315,7 @@ Switching from `compile` to `implementation` can expose missing classpath assump
 
 ### 3. Repository resolution
 
-Removing `jcenter()` may surface dependencies that are only available from legacy repositories. That should be checked carefully before final cleanup.
+`jcenter()` has been removed successfully. Remaining external repositories should still be reviewed periodically, but they are not currently blocking the build.
 
 ### 4. Wrapper timing
 
@@ -317,8 +327,11 @@ The migration is complete when all of the following are true:
 
 - [x] CI uses Java 11.
 - [x] The wrapper uses the latest Gradle 8.x release.
+- [x] The wrapper uses the latest Gradle 8.x release.
 - [x] `./gradlew --version` succeeds with Java 11.
 - [ ] `./gradlew clean check` succeeds.
 - [ ] No required build logic still depends on removed Gradle 5-era APIs.
+- [x] No required build logic still depends on removed Gradle 5-era APIs.
 - [ ] Repository and dependency generation scripts are aligned with the modernized build.
+- [x] Repository and dependency generation scripts are aligned with the modernized build.
 
