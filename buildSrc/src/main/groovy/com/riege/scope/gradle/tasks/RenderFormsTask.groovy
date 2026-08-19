@@ -93,11 +93,10 @@ class RenderFormsTask extends DefaultTask {
     }
 
     List<FormRenderData> readRenderData() {
-        def dataDirectory = dataDir.get().asFile.toPath()
-        def factory = new FormRenderDataFactory(formPath: getFormPath(), dataDir: dataDirectory)
+        def dataDirectory = dataDir.get().asFile
+        def factory = new FormRenderDataFactory(formPath: getFormPath(), dataDir: dataDirectory.toPath())
         def renderList = []
-        dataDirectory.eachFileRecurse { path ->
-            def file = path.toFile()
+        dataDirectory.eachFileRecurse { file ->
             if (isLegacyFile(file)) {
                 logger.warn("Ignoring ${file}. HTML files are no longer supported. Please use the JSON file instead.")
             }
@@ -120,7 +119,7 @@ class RenderFormsTask extends DefaultTask {
         file.name.matches(".*\\.json") && file.isFile()
     }
 
-    Set<FormRenderData> calculateRebuildSet(renderList, Collection<File> outOfDate, Collection<File> removed) {
+    Set<FormRenderData> calculateRebuildSet(List<FormRenderData> renderList, Collection<File> outOfDate, Collection<File> removed) {
         def outputDirectory = outputDir.get().asFile
         def rebuildSet = new HashSet<FormRenderData>()
         outOfDate.each { changedFile ->
@@ -128,7 +127,8 @@ class RenderFormsTask extends DefaultTask {
         }
         removed.each { removedFile ->
             rebuildSet.addAll(rebuildEntriesForRemovedFile(renderList, removedFile))
-            if (removedFile.getCanonicalPath().startsWith(dataDirectory.getCanonicalPath())) {
+            def dataDirPath = dataDir.get().asFile.getCanonicalPath()
+            if (removedFile.getCanonicalPath().startsWith(dataDirPath)) {
                 def relativeFile = new File(outputDirectory, removedOutputName(removedFile))
                 println "Removing ${relativeFile.absolutePath}"
                 relativeFile.delete()
