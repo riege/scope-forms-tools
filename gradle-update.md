@@ -42,6 +42,13 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 - The Gradle wrapper was upgraded to `8.14.5`, the latest stable Gradle 8.x release available at implementation time.
 - `./gradlew --version` succeeds on SDKMAN Java `11.0.20-tem` with Gradle `8.14.5`.
 - `./gradlew check` now fails in `buildSrc:compileGroovy` because `IncrementalTaskInputs` is no longer available, which confirms that Phase 4 is now the immediate blocker.
+- Phase 4 has been implemented.
+- `JasperReportsCompile` now uses Gradle 8 `InputChanges` / `FileChange` APIs instead of `IncrementalTaskInputs`.
+- `RenderFormsTask` now uses Gradle 8 `InputChanges` / `FileChange` APIs instead of `IncrementalTaskInputs` and no longer depends on `InputFileDetails` in its rebuild logic.
+- `FormRenderDataCache` now invalidates cache entries from plain `File` collections instead of Gradle incremental types.
+- The affected tests were updated for the new file-based change model.
+- `buildSrc` tests were also updated to a Groovy 3 compatible Spock release and JUnit Platform so they can run under Gradle 8.
+- The build was validated with SDKMAN Java `11.0.20-tem` using `./gradlew buildSrc:test check --stacktrace`.
 
 ### Decisions made
 
@@ -52,7 +59,7 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 
 ### Next phase
 
-- Phase 4: replace removed incremental task APIs using Gradle 8 `InputChanges`/`FileChange` APIs.
+- Phase 5: clean up repositories and remaining deprecated build usage.
 
 ## Migration strategy
 
@@ -172,10 +179,10 @@ The migration should be done in phases. The key principle is:
 
 ### Tasks
 
-- [ ] Remove usage of `IncrementalTaskInputs`.
-- [ ] Replace old incremental handling with Gradle 8 `InputChanges` / `FileChange` APIs.
-- [ ] Adjust cache invalidation code to use the updated change model.
-- [ ] Update or extend tests that cover the new behavior.
+- [x] Remove usage of `IncrementalTaskInputs`.
+- [x] Replace old incremental handling with Gradle 8 `InputChanges` / `FileChange` APIs.
+- [x] Adjust cache invalidation code to use the updated change model.
+- [x] Update or extend tests that cover the new behavior.
 
 ### Notes
 
@@ -189,6 +196,11 @@ This is now the immediate blocker after the wrapper upgrade. It should target Gr
 
 - Run `./gradlew test`
 - Run `./gradlew check`
+
+### Status
+
+- Completed.
+- Validated with SDKMAN Java `11.0.20-tem` using `./gradlew buildSrc:test check --stacktrace`.
 
 ---
 

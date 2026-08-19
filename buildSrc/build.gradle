@@ -13,7 +13,7 @@ dependencies {
     // These are available only when running inside the forms repo
     implementation fileTree("../../../fonts")
     implementation 'net.sourceforge.nekohtml:nekohtml:1.9.21'
-    testImplementation ("org.spockframework:spock-core:1.0-groovy-2.4") {
+    testImplementation ("org.spockframework:spock-core:2.3-groovy-3.0") {
       exclude group: "org.codehaus.groovy"
     }
     implementation 'com.github.riege:jasper-service-functions:1.2.5'
@@ -51,6 +51,7 @@ tasks.named('compileGroovy') {
 }
 
 test {
+    useJUnitPlatform()
     ignoreFailures = true
 }
 

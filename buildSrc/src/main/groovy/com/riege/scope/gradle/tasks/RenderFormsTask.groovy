@@ -14,24 +14,35 @@ import com.riege.scope.gradle.forms.FormRenderDataFactory
 import com.riege.scope.gradle.forms.PDFWithTextSupport
 import com.riege.scope.gradle.forms.PdfCreator
 import net.sf.jasperreports.engine.JasperReport
+import org.gradle.api.file.FileType
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.incremental.IncrementalTaskInputs
-import org.gradle.api.tasks.incremental.InputFileDetails
+import org.gradle.work.ChangeType
+import org.gradle.work.FileChange
+import org.gradle.work.Incremental
+import org.gradle.work.InputChanges
 
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeoutException
 
 class RenderFormsTask extends DefaultTask {
 
+    @Incremental
     @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
     File formSrcDir
+    @Incremental
     @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
     File localFormDir
+    @Incremental
     @InputDirectory
+    @PathSensitive(PathSensitivity.RELATIVE)
     File dataDir
     @OutputDirectory
     File outputDir
@@ -46,12 +57,22 @@ class RenderFormsTask extends DefaultTask {
     }
 
     @TaskAction
-    def render(IncrementalTaskInputs inputs) {
+    def render(InputChanges inputs) {
         LocalJasperService$.MODULE$.startUp(localFormDir.toString())
-        List<InputFileDetails> outOfDate = []
-        List<InputFileDetails> removed = []
-        inputs.outOfDate { outOfDate << it }
-        inputs.removed { removed << it }
+        List<File> outOfDate = []
+        List<File> removed = []
+        [formSrcDir, localFormDir, dataDir].each { inputDir ->
+            inputs.getFileChanges(inputDir).each { FileChange change ->
+                if (change.fileType != FileType.FILE) {
+                    return
+                }
+                if (change.changeType == ChangeType.REMOVED) {
+                    removed << change.file
+                } else {
+                    outOfDate << change.file
+                }
+            }
+        }
         if (inputs.isIncremental()) {
             gurkenCache.invalidate(outOfDate)
             gurkenCache.invalidate(removed)
@@ -91,15 +112,15 @@ class RenderFormsTask extends DefaultTask {
         file.name.matches(".*\\.json") && file.isFile()
     }
 
-    Set<FormRenderData> calculateRebuildSet(renderList, ArrayList<InputFileDetails> outOfDate, ArrayList<InputFileDetails> removed) {
+    Set<FormRenderData> calculateRebuildSet(renderList, Collection<File> outOfDate, Collection<File> removed) {
         def rebuildSet = new HashSet<FormRenderData>()
-        outOfDate.each { change ->
-            rebuildSet.addAll(renderList.findAll { it.dependencies.contains(change.file) })
+        outOfDate.each { changedFile ->
+            rebuildSet.addAll(renderList.findAll { it.dependencies.contains(changedFile) })
         }
-        removed.each { change ->
-            rebuildSet.addAll(rebuildEntriesForRemovedFile(renderList, change.file))
-            if (change.file.getCanonicalPath().startsWith(dataDir.getCanonicalPath())) {
-                def relativeFile = new File(outputDir, removedOutputName(change.file))
+        removed.each { removedFile ->
+            rebuildSet.addAll(rebuildEntriesForRemovedFile(renderList, removedFile))
+            if (removedFile.getCanonicalPath().startsWith(dataDir.getCanonicalPath())) {
+                def relativeFile = new File(outputDir, removedOutputName(removedFile))
                 println "Removing ${relativeFile.absolutePath}"
                 relativeFile.delete()
             }

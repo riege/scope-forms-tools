@@ -5,7 +5,6 @@
 
 package com.riege.scope.gradle.tasks
 
-import org.gradle.api.tasks.incremental.InputFileDetails
 import org.gradle.testfixtures.ProjectBuilder
 import spock.lang.Specification
 
@@ -78,7 +77,7 @@ class RenderFormsTaskSpec extends Specification {
             formSrcDir = dataDir
             errorForm = new File("src/test/resources/ErrorPDF.jasper")
         }
-        def removed = [Stub(InputFileDetails) { getFile() >> removedInput }] as ArrayList<InputFileDetails>
+        def removed = [removedInput]
 
         when:
         task.calculateRebuildSet([], [] as ArrayList, removed)
@@ -110,7 +109,7 @@ class RenderFormsTaskSpec extends Specification {
             formSrcDir = dataDir
             errorForm = new File("src/test/resources/ErrorPDF.jasper")
         }
-        def removed = [Stub(InputFileDetails) { getFile() >> removedInput }] as ArrayList<InputFileDetails>
+        def removed = [removedInput]
 
         when:
         def rebuildSet = task.calculateRebuildSet([renderData], [] as ArrayList, removed)
