@@ -43,8 +43,10 @@ class JasperReportsCompile extends DefaultTask {
     @Input
     String outExt = '.jasper'
 
+    @Input
     boolean verbose = false
 
+    @Internal
     Logger log = getLogger()
 
     protected ClassLoader cachingClassLoader
