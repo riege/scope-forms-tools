@@ -5,17 +5,15 @@
 
 package com.riege.scope.gradle.forms
 
-import org.gradle.api.tasks.incremental.InputFileDetails
-
 class FormRenderDataCache {
 
     private Map<String, FormRenderData> cache = [:]
 
-    void invalidate(List<InputFileDetails> dirtyFiles) {
-        dirtyFiles.each { change ->
+    void invalidate(Collection<File> dirtyFiles) {
+        dirtyFiles.each { dirtyFile ->
             def it = cache.entrySet().iterator()
             it.forEachRemaining { entry ->
-                if (entry.value.hasDependency(change.file)) {
+                if (entry.value.hasDependency(dirtyFile)) {
                     it.remove()
                 }
             }

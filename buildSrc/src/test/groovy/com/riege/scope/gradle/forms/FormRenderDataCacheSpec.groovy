@@ -5,7 +5,6 @@
 
 package com.riege.scope.gradle.forms
 
-import org.gradle.api.tasks.incremental.InputFileDetails
 import spock.lang.Specification
 
 class FormRenderDataCacheSpec extends Specification {
@@ -63,7 +62,7 @@ class FormRenderDataCacheSpec extends Specification {
         def oldData2 = data2
         data2 = new FormRenderData()
         when:
-        cache.invalidate([[file: dep1]] as List<InputFileDetails>)
+        cache.invalidate([dep1])
         then:
         cache.get(file1, testFiles) == data1
         cache.get(file2, testFiles) == oldData2

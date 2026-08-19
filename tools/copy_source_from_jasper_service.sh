@@ -19,29 +19,6 @@ function copy_source_file {
     echo Copied "$1"
 }
 
-if [ "$JASPER_SERVICE/build.sbt" -nt deps ]; then
-    echo Getting dependencies from SBT ...
-    (cd "$JASPER_SERVICE" && ./sbt -Dsbt.log.noformat=true server/libraryDependencies) > deps
-else
-    echo Using cached deps file
-fi
-
-# Convert SBT output to dependency spec for Gradle
-grep '*' deps | sed | awk '{print $3}' | sort | grep -Ff "tools/deplist" | sed -e "s/^/    compile '/" -e "s/$/'/" > deps_for_gradle
-
-# Scala libraries follow the convention of embedding the Scala version in the name
-sed -i '' -E '/akka|better-files/ s/(:[0-9])/_2.12\1/' deps_for_gradle
-
-# Replace the auto-generated block of build.gradle
-sed -i '' -n \
-    -e "1,/\/\/ BEGIN AUTO-GENERATED / p" \
-    -e"/\/\/ END AUTO-GENERATED /,$ p" \
-    -e "/\/\/ BEGIN AUTO-GENERATED / r deps_for_gradle" \
-    "buildSrc/build.gradle"
-echo Written dependencies to "buildSrc/build.gradle"
-
-rm deps_for_gradle
-
 copy_source_file src/main/scala/com/riege/jasperservice/frontend/JasperServiceProtocol.scala
 copy_source_file src/main/scala/com/riege/jasperservice/backend/BackendException.scala
 copy_source_file src/main/scala/com/riege/jasperservice/backend/PrintException.scala

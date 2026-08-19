@@ -14,44 +14,71 @@ import com.riege.scope.gradle.forms.FormRenderDataFactory
 import com.riege.scope.gradle.forms.PDFWithTextSupport
 import com.riege.scope.gradle.forms.PdfCreator
 import net.sf.jasperreports.engine.JasperReport
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.FileType
+import org.gradle.api.file.RegularFileProperty
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.InputDirectory
 import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.OutputDirectory
+import org.gradle.api.tasks.PathSensitive
+import org.gradle.api.tasks.PathSensitivity
 import org.gradle.api.tasks.TaskAction
-import org.gradle.api.tasks.incremental.IncrementalTaskInputs
-import org.gradle.api.tasks.incremental.InputFileDetails
+import org.gradle.work.ChangeType
+import org.gradle.work.FileChange
+import org.gradle.work.Incremental
+import org.gradle.work.InputChanges
 
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeoutException
 
 class RenderFormsTask extends DefaultTask {
 
+    @Incremental
     @InputDirectory
-    File formSrcDir
+    @PathSensitive(PathSensitivity.RELATIVE)
+    final DirectoryProperty formSrcDir = project.objects.directoryProperty()
+    @Incremental
     @InputDirectory
-    File localFormDir
+    @PathSensitive(PathSensitivity.RELATIVE)
+    final DirectoryProperty localFormDir = project.objects.directoryProperty()
+    @Incremental
     @InputDirectory
-    File dataDir
+    @PathSensitive(PathSensitivity.RELATIVE)
+    final DirectoryProperty dataDir = project.objects.directoryProperty()
     @OutputDirectory
-    File outputDir
+    final DirectoryProperty outputDir = project.objects.directoryProperty()
     @InputFile
-    File errorForm
+    final RegularFileProperty errorForm = project.objects.fileProperty()
+    @Internal
     JasperReport errorReport
 
     static FormRenderDataCache gurkenCache = new FormRenderDataCache()
 
+    @Internal
     def getFormPath() {
-        new FormPath(formSrcDir.toPath(), localFormDir.toPath())
+        new FormPath(formSrcDir.get().asFile.toPath(), localFormDir.get().asFile.toPath())
     }
 
     @TaskAction
-    def render(IncrementalTaskInputs inputs) {
-        LocalJasperService$.MODULE$.startUp(localFormDir.toString())
-        List<InputFileDetails> outOfDate = []
-        List<InputFileDetails> removed = []
-        inputs.outOfDate { outOfDate << it }
-        inputs.removed { removed << it }
+    def render(InputChanges inputs) {
+        LocalJasperService$.MODULE$.startUp(localFormDir.get().asFile.toString())
+
+        List<File> outOfDate = []
+        List<File> removed = []
+        [formSrcDir, localFormDir, dataDir].each { inputDir ->
+            inputs.getFileChanges(inputDir).each { FileChange change ->
+                if (change.fileType != FileType.FILE) {
+                    return
+                }
+                if (change.changeType == ChangeType.REMOVED) {
+                    removed << change.file
+                } else {
+                    outOfDate << change.file
+                }
+            }
+        }
         if (inputs.isIncremental()) {
             gurkenCache.invalidate(outOfDate)
             gurkenCache.invalidate(removed)
@@ -66,9 +93,10 @@ class RenderFormsTask extends DefaultTask {
     }
 
     List<FormRenderData> readRenderData() {
-        def factory = new FormRenderDataFactory(formPath: getFormPath(), dataDir: dataDir.toPath())
+        def dataDirectory = dataDir.get().asFile
+        def factory = new FormRenderDataFactory(formPath: getFormPath(), dataDir: dataDirectory.toPath())
         def renderList = []
-        dataDir.eachFileRecurse { file ->
+        dataDirectory.eachFileRecurse { file ->
             if (isLegacyFile(file)) {
                 logger.warn("Ignoring ${file}. HTML files are no longer supported. Please use the JSON file instead.")
             }
@@ -91,15 +119,17 @@ class RenderFormsTask extends DefaultTask {
         file.name.matches(".*\\.json") && file.isFile()
     }
 
-    Set<FormRenderData> calculateRebuildSet(renderList, ArrayList<InputFileDetails> outOfDate, ArrayList<InputFileDetails> removed) {
+    Set<FormRenderData> calculateRebuildSet(List<FormRenderData> renderList, Collection<File> outOfDate, Collection<File> removed) {
+        def outputDirectory = outputDir.get().asFile
         def rebuildSet = new HashSet<FormRenderData>()
-        outOfDate.each { change ->
-            rebuildSet.addAll(renderList.findAll { it.dependencies.contains(change.file) })
+        outOfDate.each { changedFile ->
+            rebuildSet.addAll(renderList.findAll { it.dependencies.contains(changedFile) })
         }
-        removed.each { change ->
-            rebuildSet.addAll(rebuildEntriesForRemovedFile(renderList, change.file))
-            if (change.file.getCanonicalPath().startsWith(dataDir.getCanonicalPath())) {
-                def relativeFile = new File(outputDir, removedOutputName(change.file))
+        removed.each { removedFile ->
+            rebuildSet.addAll(rebuildEntriesForRemovedFile(renderList, removedFile))
+            def dataDirPath = dataDir.get().asFile.getCanonicalPath()
+            if (removedFile.getCanonicalPath().startsWith(dataDirPath)) {
+                def relativeFile = new File(outputDirectory, removedOutputName(removedFile))
                 println "Removing ${relativeFile.absolutePath}"
                 relativeFile.delete()
             }
@@ -131,7 +161,7 @@ class RenderFormsTask extends DefaultTask {
     }
 
     void writePdfToOutputDir(String fileName, byte[] pdf) {
-        def outputFile = new File(outputDir, fileName)
+        def outputFile = new File(outputDir.get().asFile, fileName)
         outputFile.parentFile.mkdirs()
         outputFile.withOutputStream { it.write(pdf) }
     }
@@ -159,7 +189,7 @@ class RenderFormsTask extends DefaultTask {
 
     JasperReport loadErrorForm() {
         if (errorReport == null) {
-            errorReport = errorForm.toPath().withObjectInputStream(Thread.currentThread().getContextClassLoader()) {
+            errorReport = errorForm.get().asFile.toPath().withObjectInputStream(Thread.currentThread().getContextClassLoader()) {
                 it.readObject() as JasperReport
             }
         }
@@ -167,7 +197,7 @@ class RenderFormsTask extends DefaultTask {
     }
 
     def relativeToDataDir(File dataFile) {
-        dataDir.toPath().relativize(dataFile.toPath()).toFile()
+        dataDir.get().asFile.toPath().relativize(dataFile.toPath()).toFile()
     }
 
     Collection<FormRenderData> rebuildEntriesForRemovedFile(Collection<FormRenderData> renderList, File removedFile) {

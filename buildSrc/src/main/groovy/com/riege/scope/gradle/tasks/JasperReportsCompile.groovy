@@ -11,11 +11,15 @@ import net.sf.jasperreports.engine.SimpleJasperReportsContext
 import net.sf.jasperreports.engine.design.JRCompiler
 import net.sf.jasperreports.engine.xml.JRReportSaxParserFactory
 import org.gradle.api.DefaultTask
-import org.gradle.api.logging.Logger
+import org.gradle.api.file.DirectoryProperty
+import org.gradle.api.file.FileType
 import org.gradle.api.tasks.*
-import org.gradle.api.tasks.incremental.IncrementalTaskInputs
+import org.gradle.work.ChangeType
+import org.gradle.work.FileChange
+import org.gradle.work.Incremental
+import org.gradle.work.InputChanges
 
-import java.awt.*
+import java.awt.Color
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ForkJoinPool
 import java.util.concurrent.RecursiveAction
@@ -25,11 +29,13 @@ import java.util.concurrent.RecursiveAction
  */
 class JasperReportsCompile extends DefaultTask {
 
+    @Incremental
     @InputDirectory
-    File srcDir
+    @PathSensitive(PathSensitivity.RELATIVE)
+    final DirectoryProperty srcDir = project.objects.directoryProperty()
 
     @OutputDirectory
-    File outDir
+    final DirectoryProperty outDir = project.objects.directoryProperty()
 
     @Input
     String srcExt = '.jrxml'
@@ -37,14 +43,13 @@ class JasperReportsCompile extends DefaultTask {
     @Input
     String outExt = '.jasper'
 
+    @Input
     boolean verbose = false
-
-    Logger log = getLogger()
 
     protected ClassLoader cachingClassLoader
 
     @TaskAction
-    def execute(IncrementalTaskInputs inputs) {
+    def execute(InputChanges inputs) {
         // Disable logging for JasperReports
         // TODO: this does not work as Gradle uses its own logging
         //java.util.logging.Logger.getLogger("net.sf.jasperreports")
@@ -52,12 +57,12 @@ class JasperReportsCompile extends DefaultTask {
 
         // Pre-loads AWT classes to avoid strange deadlock in the JVM.
         def color = new Color(0)
-        log.debug("Loaded colors {}", (Object) color)
+        logger.debug("Loaded colors {}", (Object) color)
 
         cachingClassLoader = new CachingClassLoader(getClass().classLoader)
 
-        if (!outDir.exists()) {
-            outDir.mkdirs()
+        if (!outDir.get().asFile.exists()) {
+            outDir.get().asFile.mkdirs()
         }
 
         def jasperReportsContext = new SimpleJasperReportsContext()
@@ -76,57 +81,42 @@ class JasperReportsCompile extends DefaultTask {
 
         def pool = new ForkJoinPool(Runtime.runtime.availableProcessors())
 
-        def findFormsTask = new FindFormsTask(manager, inputs)
-        pool.execute(findFormsTask)
-        findFormsTask.join()
-    }
-
-    class FindFormsTask extends RecursiveAction {
-
-        private final JasperCompileManager manager
-        private final IncrementalTaskInputs inputs
-
-        FindFormsTask(JasperCompileManager manager, IncrementalTaskInputs inputs) {
-            this.manager = manager
-            this.inputs = inputs
-        }
-
-        @Override
-        protected void compute() {
-            def compilationTasks = []
-            inputs.outOfDate { change ->
-                if (change.file.name.endsWith(srcExt)) {
-                    if (verbose) {
-                        log.lifecycle "Found form ${change.file.name}"
-                    }
-                    def compileTask = new CompileFormTask(manager, change.file, toCompiledForm(change.file))
-                    compileTask.fork()
-                    compilationTasks << compileTask
-                }
+        def compilationTasks = []
+        inputs.getFileChanges(srcDir).each { FileChange change ->
+            if (change.fileType != FileType.FILE || !change.file.name.endsWith(srcExt)) {
+                return
             }
-            inputs.removed { change ->
+
+            if (change.changeType == ChangeType.REMOVED) {
                 if (verbose) {
-                    log.lifecycle "Removed file ${change.file.name}"
+                    logger.lifecycle "Removed file ${change.file.name}"
                 }
-                def fileToRemove = toCompiledForm(change.file)
-                fileToRemove.delete()
+                toCompiledForm(change.file).delete()
+                return
             }
-            compilationTasks.each { CompileFormTask task ->
-                task.join()
+
+            if (verbose) {
+                logger.lifecycle "Found form ${change.file.name}"
             }
+            def compileTask = new CompileFormTask(manager, change.file, toCompiledForm(change.file))
+            pool.execute(compileTask)
+            compilationTasks << compileTask
         }
 
-        private File toCompiledForm(File src) {
-            def form = src.absolutePath.replace(srcExt, outExt).substring(srcDir.absolutePath.length())
-            def formPath = outDir.absolutePath
-            if (!formPath.endsWith(File.separator)) {
-                formPath += File.separator
-            }
-            formPath += form
-            new File(formPath)
-        }
-
+        compilationTasks.each { it.join() }
     }
+
+    protected File toCompiledForm(File src) {
+        def sourceRoot = srcDir.get().asFile
+        def form = src.absolutePath.replace(srcExt, outExt).substring(sourceRoot.absolutePath.length())
+        def formPath = outDir.get().asFile.toString()
+        if (!formPath.endsWith(File.separator)) {
+            formPath += File.separator
+        }
+        formPath += form
+        new File(formPath)
+    }
+
 
     class CompileFormTask extends RecursiveAction {
 
@@ -146,7 +136,7 @@ class JasperReportsCompile extends DefaultTask {
         protected void compute() {
             Thread.currentThread().setContextClassLoader(cachingClassLoader)
             if (verbose) {
-                log.lifecycle "Compiling form ${sourceForm}"
+                logger.lifecycle "Compiling form ${sourceForm}"
             }
             try {
                 def destFileParent = compiledForm.getParentFile()
@@ -155,7 +145,7 @@ class JasperReportsCompile extends DefaultTask {
                 }
                 manager.compileToFile(sourceForm.absolutePath, compiledForm.absolutePath)
             } catch (JRException e) {
-                log.lifecycle("Compiling report design '" + sourceForm.absolutePath
+                logger.lifecycle("Compiling report design '" + sourceForm.absolutePath
                         + "' failed due to:\n" + e.getMessage())
                 throw new TaskExecutionException(JasperReportsCompile.this, e)
             }
