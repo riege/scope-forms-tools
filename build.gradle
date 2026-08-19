@@ -14,13 +14,13 @@ def formsParamDir  = file(formsParamDir)
 def errorFormFile  = file(errorFormFile)
 
 task (compileErrorForm, type: JasperReportsCompile) {
-    srcDir = file('buildSrc/src/main/resources')
-    outDir = errorFormFile.parentFile
+    srcDir.set(file('buildSrc/src/main/resources'))
+    outDir.set(errorFormFile.parentFile)
 }
 
 task (compileForms, type: JasperReportsCompile) {
-    srcDir = formsSourceDir
-    outDir = formsOutputDir
+    srcDir.set(formsSourceDir)
+    outDir.set(formsOutputDir)
 }
 
 task (copyResources, type: Sync) {
@@ -40,10 +40,10 @@ task (cleanPDF, type: Delete) {
 }
 
 task (renderForms, type: RenderFormsTask, dependsOn: [compileForms, copyResources, compileErrorForm]) {
-    dataDir      = formsParamDir
-    formSrcDir   = formsSourceDir
-    localFormDir = formsOutputDir
-    outputDir    = formsPDFDir
-    errorForm    = errorFormFile
+    dataDir.set(formsParamDir)
+    formSrcDir.set(formsSourceDir)
+    localFormDir.set(formsOutputDir)
+    outputDir.set(formsPDFDir)
+    errorForm.set(errorFormFile)
 }
 

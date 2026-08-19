@@ -41,11 +41,11 @@ class RenderFormsTaskSpec extends Specification {
         File tempDir = File.createTempDir("RenderFormsTaskSpec", "")
         def project = ProjectBuilder.builder().build()
         def task = project.task('testTask', type: RenderFormsTask) {
-            dataDir = new File("src/test/resources")
-            localFormDir = new File("src/test/resources")
-            formSrcDir = new File("src/test/resources")
-            outputDir = tempDir
-            errorForm = new File("src/test/resources/ErrorPDF.jasper")
+            dataDir.set(new File("src/test/resources"))
+            localFormDir.set(new File("src/test/resources"))
+            formSrcDir.set(new File("src/test/resources"))
+            outputDir.set(tempDir)
+            errorForm.set(new File("src/test/resources/ErrorPDF.jasper"))
         }
 
         when:
@@ -71,11 +71,11 @@ class RenderFormsTaskSpec extends Specification {
         outputFile.text = "stale"
         def project = ProjectBuilder.builder().build()
         def task = project.task('testTaskDeleteTxt', type: RenderFormsTask) {
-            dataDir = tempDataDir
-            outputDir = tempOutputDir
-            localFormDir = dataDir
-            formSrcDir = dataDir
-            errorForm = new File("src/test/resources/ErrorPDF.jasper")
+            dataDir.set(tempDataDir)
+            outputDir.set(tempOutputDir)
+            localFormDir.set(tempDataDir)
+            formSrcDir.set(tempDataDir)
+            errorForm.set(new File("src/test/resources/ErrorPDF.jasper"))
         }
         def removed = [removedInput]
 
@@ -103,11 +103,11 @@ class RenderFormsTaskSpec extends Specification {
         def renderData = new com.riege.scope.gradle.forms.FormRenderData(file: pdfInput, fileName: "nested/document.json")
         def project = ProjectBuilder.builder().build()
         def task = project.task('testTaskRebuildSiblingPdf', type: RenderFormsTask) {
-            dataDir = tempDataDir
-            outputDir = tempOutputDir
-            localFormDir = dataDir
-            formSrcDir = dataDir
-            errorForm = new File("src/test/resources/ErrorPDF.jasper")
+            dataDir.set(tempDataDir)
+            outputDir.set(tempOutputDir)
+            localFormDir.set(tempDataDir)
+            formSrcDir.set(tempDataDir)
+            errorForm.set(new File("src/test/resources/ErrorPDF.jasper"))
         }
         def removed = [removedInput]
 
