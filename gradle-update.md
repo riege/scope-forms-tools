@@ -30,6 +30,10 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 - `.github/workflows/build.yml` was updated to use Java 11.
 - `README.md` now documents the Java 11 baseline and the verification commands.
 - The build was validated with SDKMAN Java `11.0.20-tem` using `./gradlew --version` and `./gradlew check`.
+- Phase 2 has been implemented.
+- `buildSrc/build.gradle` now uses `implementation` and `testImplementation` instead of `compile` and `testCompile`.
+- `tools/copy_source_from_jasper_service.sh` no longer rewrites dependency declarations in `buildSrc/build.gradle` and is now limited to source synchronization.
+- The build was revalidated with SDKMAN Java `11.0.20-tem` using `./gradlew check`.
 
 ### Decisions made
 
@@ -38,7 +42,7 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 
 ### Next phase
 
-- Phase 2: modernize `buildSrc` dependency declarations.
+- Phase 3: modernize mixed Scala/Groovy build wiring.
 
 ## Migration strategy
 
@@ -89,11 +93,11 @@ The migration should be done in phases. The key principle is:
 
 ### Tasks
 
-- [ ] Replace `compile` with `implementation` or `api` where appropriate in `buildSrc/build.gradle`.
-- [ ] Replace `testCompile` with `testImplementation`.
-- [ ] Review whether any dependencies in `buildSrc` must remain exposed to consumers; prefer `implementation` unless exposure is required.
-- [ ] Update `tools/copy_source_from_jasper_service.sh` by removing the dependency-related parts, as dependencies in this repo are managed without this script.
-- [ ] Re-run tests after the change.
+- [x] Replace `compile` with `implementation` or `api` where appropriate in `buildSrc/build.gradle`.
+- [x] Replace `testCompile` with `testImplementation`.
+- [x] Review whether any dependencies in `buildSrc` must remain exposed to consumers; prefer `implementation` unless exposure is required.
+- [x] Update `tools/copy_source_from_jasper_service.sh` by removing the dependency-related parts, as dependencies in this repo are managed without this script.
+- [x] Re-run tests after the change.
 
 ### Notes
 
@@ -106,6 +110,11 @@ The migration should be done in phases. The key principle is:
 ### Validation
 
 - Run `./gradlew check`
+
+### Status
+
+- Completed.
+- Validated with SDKMAN Java `11.0.20-tem` using `./gradlew check`.
 
 ---
 
