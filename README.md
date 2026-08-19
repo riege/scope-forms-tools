@@ -14,7 +14,7 @@ Gradle build
 
 The build now targets Java 11.
 
-Use a Java 11 runtime when invoking `./gradlew`. During the Gradle upgrade, the wrapper is still on Gradle `5.2.1`, so Java toolchains are not configured yet; the active JVM itself must be Java 11.
+Use a Java 11 runtime when invoking `./gradlew`.
 
 ### Tests
 
