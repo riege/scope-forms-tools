@@ -56,6 +56,7 @@ class RenderFormsTask extends DefaultTask {
 
     static FormRenderDataCache gurkenCache = new FormRenderDataCache()
 
+    @Internal
     def getFormPath() {
         new FormPath(formSrcDir.get().asFile.toPath(), localFormDir.get().asFile.toPath())
     }
