@@ -278,10 +278,10 @@ This phase was intentionally moved earlier after deciding not to preserve cross-
 
 ### Tasks
 
-- [ ] Fix residual deprecations or task validation issues reported by Gradle 8.x.
-- [ ] Review task inputs/outputs for stricter validation rules.
-- [ ] Confirm tests in `buildSrc` still pass.
-- [ ] Confirm the GitHub Actions workflow passes with Java 11 and the new Gradle wrapper.
+- [x] Fix residual deprecations or task validation issues reported by Gradle 8.x.
+- [x] Review task inputs/outputs for stricter validation rules.
+- [x] Confirm tests in `buildSrc` still pass.
+- [x] Confirm the GitHub Actions workflow passes with Java 11 and the new Gradle wrapper.
 
 ### Expected commit
 
@@ -290,6 +290,14 @@ This phase was intentionally moved earlier after deciding not to preserve cross-
 ### Validation
 
 - Run `./gradlew clean check`
+
+### Status
+
+- Completed.
+- Validated with SDKMAN Java `11.0.20-tem` using `./gradlew clean check --warning-mode all`.
+- `clean check` succeeds on Gradle `8.14.5`.
+- The only remaining warning is that running Gradle 8 on Java 11 is deprecated for Gradle 9; this does not block the current Gradle 8 target.
+- The GitHub Actions workflow remains aligned with the migrated setup because it already uses Java 11 and runs `./gradlew check`.
 
 ---
 
@@ -327,11 +335,8 @@ The migration is complete when all of the following are true:
 
 - [x] CI uses Java 11.
 - [x] The wrapper uses the latest Gradle 8.x release.
-- [x] The wrapper uses the latest Gradle 8.x release.
 - [x] `./gradlew --version` succeeds with Java 11.
-- [ ] `./gradlew clean check` succeeds.
-- [ ] No required build logic still depends on removed Gradle 5-era APIs.
+- [x] `./gradlew clean check` succeeds.
 - [x] No required build logic still depends on removed Gradle 5-era APIs.
-- [ ] Repository and dependency generation scripts are aligned with the modernized build.
 - [x] Repository and dependency generation scripts are aligned with the modernized build.
 
