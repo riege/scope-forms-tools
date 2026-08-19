@@ -40,9 +40,14 @@ dependencies {
     // END AUTO-GENERATED JASPER SERVICE DEPENDENCIES
 }
 
-compileGroovy {
-    classpath = classpath.plus(files(compileScala.destinationDir))
-    dependsOn compileScala
+tasks.named('compileGroovy') {
+    dependsOn tasks.named('compileScala')
+    classpath += files {
+        def scalaCompile = tasks.named('compileScala').get()
+        scalaCompile.hasProperty('destinationDirectory')
+            ? scalaCompile.destinationDirectory.get().asFile
+            : scalaCompile.destinationDir
+    }
 }
 
 test {

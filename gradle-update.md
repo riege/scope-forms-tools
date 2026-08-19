@@ -34,6 +34,10 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 - `buildSrc/build.gradle` now uses `implementation` and `testImplementation` instead of `compile` and `testCompile`.
 - `tools/copy_source_from_jasper_service.sh` no longer rewrites dependency declarations in `buildSrc/build.gradle` and is now limited to source synchronization.
 - The build was revalidated with SDKMAN Java `11.0.20-tem` using `./gradlew check`.
+- Phase 3 has been implemented.
+- `buildSrc/build.gradle` now uses lazy task lookup for the Groovy/Scala wiring instead of direct eager task references.
+- The Groovy compile classpath still includes Scala outputs, using a cross-version lookup that works with the current Gradle 5 wrapper and prepares for newer Gradle versions.
+- The build was revalidated with SDKMAN Java `11.0.20-tem` using `./gradlew check --rerun-tasks`.
 
 ### Decisions made
 
@@ -42,7 +46,7 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 
 ### Next phase
 
-- Phase 3: modernize mixed Scala/Groovy build wiring.
+- Phase 4: replace removed incremental task APIs.
 
 ## Migration strategy
 
@@ -126,10 +130,10 @@ The migration should be done in phases. The key principle is:
 
 ### Tasks
 
-- [ ] Update `buildSrc/build.gradle` to avoid old task property access such as `compileScala.destinationDir`.
-- [ ] Replace direct task property reads with modern provider-based access where needed.
-- [ ] Verify that Groovy compilation still sees Scala outputs correctly.
-- [ ] Keep the change minimal and avoid unrelated refactoring.
+- [x] Update `buildSrc/build.gradle` to avoid old task property access such as `compileScala.destinationDir`.
+- [x] Replace direct task property reads with modern provider-based access where needed.
+- [x] Verify that Groovy compilation still sees Scala outputs correctly.
+- [x] Keep the change minimal and avoid unrelated refactoring.
 
 ### Expected commit
 
@@ -138,6 +142,11 @@ The migration should be done in phases. The key principle is:
 ### Validation
 
 - Run `./gradlew buildSrc:build` if applicable, otherwise `./gradlew check`
+
+### Status
+
+- Completed.
+- Validated with SDKMAN Java `11.0.20-tem` using `./gradlew check --rerun-tasks`.
 
 ---
 
