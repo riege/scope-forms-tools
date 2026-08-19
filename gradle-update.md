@@ -15,12 +15,12 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 
 ## Current state observed in this repository
 
-- The wrapper currently points to Gradle `5.2.1` in `gradle/wrapper/gradle-wrapper.properties`.
+- The wrapper now points to Gradle `8.14.5` in `gradle/wrapper/gradle-wrapper.properties`.
 - CI now uses Java 11 in `.github/workflows/build.yml`.
-- `buildSrc/build.gradle` still uses deprecated dependency configurations such as `compile` and `testCompile`.
-- `buildSrc` custom tasks still use the removed incremental API based on `IncrementalTaskInputs`.
+- `buildSrc/build.gradle` now uses `implementation` and `testImplementation`.
+- `buildSrc` custom tasks still use the removed incremental API based on `IncrementalTaskInputs`, which now fails immediately under Gradle 8.
 - `build.gradle` still references `jcenter()`.
-- `tools/copy_source_from_jasper_service.sh` auto-generates dependency entries using the old `compile` syntax, but this can be ignored
+- `tools/copy_source_from_jasper_service.sh` no longer rewrites dependency declarations in `buildSrc/build.gradle`.
 
 ## Implementation status
 
@@ -38,24 +38,31 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 - `buildSrc/build.gradle` now uses lazy task lookup for the Groovy/Scala wiring instead of direct eager task references.
 - The Groovy compile classpath still includes Scala outputs, using a cross-version lookup that works with the current Gradle 5 wrapper and prepares for newer Gradle versions.
 - The build was revalidated with SDKMAN Java `11.0.20-tem` using `./gradlew check --rerun-tasks`.
+- Phase 6 has been implemented early as part of a revised migration strategy.
+- The Gradle wrapper was upgraded to `8.14.5`, the latest stable Gradle 8.x release available at implementation time.
+- `./gradlew --version` succeeds on SDKMAN Java `11.0.20-tem` with Gradle `8.14.5`.
+- `./gradlew check` now fails in `buildSrc:compileGroovy` because `IncrementalTaskInputs` is no longer available, which confirms that Phase 4 is now the immediate blocker.
 
 ### Decisions made
 
 - Java 11 is the baseline runtime for the migration.
-- Java toolchains are intentionally deferred until a later phase because the repository still uses Gradle `5.2.1`.
+- Java toolchains remain deferred for now.
+- The migration strategy has changed: it no longer tries to keep intermediate changes compatible with both Gradle 5 and Gradle 8.
+- The wrapper has been upgraded early so the remaining work can target Gradle 8 APIs directly.
 
 ### Next phase
 
-- Phase 4: replace removed incremental task APIs.
+- Phase 4: replace removed incremental task APIs using Gradle 8 `InputChanges`/`FileChange` APIs.
 
 ## Migration strategy
 
 The migration should be done in phases. The key principle is:
 
-1. modernize build logic first,
-2. then upgrade the wrapper,
-3. then fix remaining breakages,
-4. then document and clean up.
+1. establish the Java 11 baseline,
+2. complete low-risk build script cleanups,
+3. upgrade the wrapper early,
+4. fix the Gradle 8 incompatibilities directly,
+5. then document and clean up.
 
 ---
 
@@ -166,13 +173,13 @@ The migration should be done in phases. The key principle is:
 ### Tasks
 
 - [ ] Remove usage of `IncrementalTaskInputs`.
-- [ ] Replace old incremental handling with modern input tracking APIs supported by Gradle 8.x.
+- [ ] Replace old incremental handling with Gradle 8 `InputChanges` / `FileChange` APIs.
 - [ ] Adjust cache invalidation code to use the updated change model.
 - [ ] Update or extend tests that cover the new behavior.
 
 ### Notes
 
-This is likely the most invasive part of the migration. It should be isolated in its own commit.
+This is now the immediate blocker after the wrapper upgrade. It should target Gradle 8 APIs directly and no longer preserve Gradle 5 compatibility.
 
 ### Expected commit
 
@@ -212,17 +219,17 @@ This is likely the most invasive part of the migration. It should be isolated in
 
 ### Objectives
 
-- Move the wrapper to the final target version once the build logic is compatible.
+- Upgrade the wrapper to the final target version so the remaining migration can target Gradle 8 directly.
 
 ### Tasks
 
-- [ ] Update `gradle/wrapper/gradle-wrapper.properties` to the latest Gradle 8.x release available at implementation time.
-- [ ] Regenerate wrapper artifacts using the wrapper task.
-- [ ] Verify `gradlew`, `gradlew.bat`, and wrapper JAR changes are correct.
+- [x] Update `gradle/wrapper/gradle-wrapper.properties` to the latest Gradle 8.x release available at implementation time.
+- [x] Regenerate wrapper artifacts using the wrapper task.
+- [x] Verify `gradlew`, `gradlew.bat`, and wrapper JAR changes are correct.
 
 ### Notes
 
-This should happen after the compatibility work above, not before.
+This phase was intentionally moved earlier after deciding not to preserve cross-version compatibility during the migration.
 
 ### Expected commit
 
@@ -232,6 +239,12 @@ This should happen after the compatibility work above, not before.
 
 - Run `./gradlew --version`
 - Run `./gradlew check`
+
+### Status
+
+- Completed early under the revised strategy.
+- Validated with SDKMAN Java `11.0.20-tem` using `./gradlew --version`.
+- `./gradlew check` currently fails because Phase 4 has not yet removed `IncrementalTaskInputs`.
 
 ---
 
@@ -263,9 +276,9 @@ This should happen after the compatibility work above, not before.
 1. `build: switch CI and docs to Java 11`
 2. `build: replace deprecated buildSrc dependency configurations`
 3. `build: modernize buildSrc Scala and Groovy task wiring`
-4. `build: migrate custom tasks off removed incremental APIs`
-5. `build: remove legacy repository and DSL usage`
-6. `build: upgrade Gradle wrapper to latest Java 11 compatible release`
+4. `build: upgrade Gradle wrapper to latest Java 11 compatible release`
+5. `build: migrate custom tasks off removed incremental APIs`
+6. `build: remove legacy repository and DSL usage`
 7. `build: fix remaining Gradle 8 compatibility issues`
 
 ## Risks and likely trouble spots
@@ -284,16 +297,15 @@ Removing `jcenter()` may surface dependencies that are only available from legac
 
 ### 4. Wrapper timing
 
-If the wrapper is upgraded too early, the build may fail before the compatibility fixes can be applied cleanly.
+The wrapper has already been upgraded early by design. This increases short-term breakage but makes the remaining migration work more direct and easier to validate against the real target runtime.
 
 ## Definition of done
 
 The migration is complete when all of the following are true:
 
-- [ ] CI uses Java 11.
 - [x] CI uses Java 11.
-- [ ] The wrapper uses the latest Gradle 8.x release.
-- [ ] `./gradlew --version` succeeds with Java 11.
+- [x] The wrapper uses the latest Gradle 8.x release.
+- [x] `./gradlew --version` succeeds with Java 11.
 - [ ] `./gradlew clean check` succeeds.
 - [ ] No required build logic still depends on removed Gradle 5-era APIs.
 - [ ] Repository and dependency generation scripts are aligned with the modernized build.
