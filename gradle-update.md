@@ -16,11 +16,29 @@ Gradle 9.x requires a newer Java runtime than Java 11 to run. Since this reposit
 ## Current state observed in this repository
 
 - The wrapper currently points to Gradle `5.2.1` in `gradle/wrapper/gradle-wrapper.properties`.
-- CI currently uses Java 8 in `.github/workflows/build.yml`.
+- CI now uses Java 11 in `.github/workflows/build.yml`.
 - `buildSrc/build.gradle` still uses deprecated dependency configurations such as `compile` and `testCompile`.
 - `buildSrc` custom tasks still use the removed incremental API based on `IncrementalTaskInputs`.
 - `build.gradle` still references `jcenter()`.
 - `tools/copy_source_from_jasper_service.sh` auto-generates dependency entries using the old `compile` syntax, but this can be ignored
+
+## Implementation status
+
+### Completed
+
+- Phase 1 has been implemented.
+- `.github/workflows/build.yml` was updated to use Java 11.
+- `README.md` now documents the Java 11 baseline and the verification commands.
+- The build was validated with SDKMAN Java `11.0.20-tem` using `./gradlew --version` and `./gradlew check`.
+
+### Decisions made
+
+- Java 11 is the baseline runtime for the migration.
+- Java toolchains are intentionally deferred until a later phase because the repository still uses Gradle `5.2.1`.
+
+### Next phase
+
+- Phase 2: modernize `buildSrc` dependency declarations.
 
 ## Migration strategy
 
@@ -42,9 +60,9 @@ The migration should be done in phases. The key principle is:
 
 ### Tasks
 
-- [ ] Update `.github/workflows/build.yml` to use Java 11.
-- [ ] Decide whether to add explicit Java toolchains in `build.gradle` and `buildSrc/build.gradle`.
-- [ ] Update `README.md` to mention the Java 11 requirement for contributors.
+- [x] Update `.github/workflows/build.yml` to use Java 11.
+- [x] Decide whether to add explicit Java toolchains in `build.gradle` and `buildSrc/build.gradle`.
+- [x] Update `README.md` to mention the Java 11 requirement for contributors.
 
 ### Expected commit
 
@@ -54,6 +72,11 @@ The migration should be done in phases. The key principle is:
 
 - Run `./gradlew --version`
 - Run `./gradlew check`
+
+### Status
+
+- Completed.
+- Validated with SDKMAN Java `11.0.20-tem`.
 
 ---
 
@@ -250,6 +273,7 @@ If the wrapper is upgraded too early, the build may fail before the compatibilit
 The migration is complete when all of the following are true:
 
 - [ ] CI uses Java 11.
+- [x] CI uses Java 11.
 - [ ] The wrapper uses the latest Gradle 8.x release.
 - [ ] `./gradlew --version` succeeds with Java 11.
 - [ ] `./gradlew clean check` succeeds.
