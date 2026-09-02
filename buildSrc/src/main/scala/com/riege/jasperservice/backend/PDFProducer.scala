@@ -74,7 +74,7 @@ class PDFProducer(
     val printable = createPrintable(data, formLoader, form)
     val ec = new SimplePdfExporterConfiguration
     if (data.pdfa) {
-      ec.setPdfaConformance(PdfaConformanceEnum.PDFA_1B)
+      ec.setPdfaConformance(PdfaConformanceEnum.PDFA_3B)
       ec.setIccProfilePath(formLoader.getIccProfilePath)
     } else {
       if (data.encryptPDF) {
